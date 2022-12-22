@@ -4,7 +4,7 @@
         <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Topic Routing :: Debezium Documentation</title>
-    <link rel="canonical" href="https://debezium.io/documentation/reference/1.7/transformations/topic-routing.html">
+    <link rel="canonical" href="https://debezium.io/documentation/reference/stable/transformations/topic-routing.html">
     <meta name="generator" content="Antora 3.0.0-alpha.9">
 <link rel="stylesheet" href="../../debezium-antora/css/site.css">
 <link rel="stylesheet" href="../../debezium-antora/css/debezium-antora.css">
@@ -120,6 +120,9 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../connectors/vitess.html">Vitess</a>
   </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../connectors/spanner.html">Spanner</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
@@ -202,6 +205,9 @@
     <a class="nav-link" href="../operations/monitoring.html">Monitoring</a>
   </li>
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../operations/kubernetes.html">Running on Kubernetes</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../operations/openshift.html">Running on Openshift</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -226,11 +232,20 @@
     <li class="component is-current">
       <span class="title">Debezium Documentation</span>
       <ul class="versions">
-        <li class="version">
-          <a href="/documentation/reference/1.8/index.html">1.8</a>
-        </li>
         <li class="version is-current">
           <a href="/documentation/reference/nightly/index.html">nightly</a>
+        </li>
+        <li class="version">
+          <a href="/documentation/reference/2.1/index.html">2.1</a>
+        </li>
+        <li class="version">
+          <a href="/documentation/reference/2.0/index.html">2.0</a>
+        </li>
+        <li class="version">
+          <a href="/documentation/reference/1.9/index.html">1.9</a>
+        </li>
+        <li class="version">
+          <a href="/documentation/reference/1.8/index.html">1.8</a>
         </li>
         <li class="version">
           <a href="/documentation/reference/1.7/index.html">1.7</a>
@@ -272,7 +287,7 @@
 <main role="main" class="main">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="../1.7/index.html" class="home-link"></a>
+  <a href="../stable/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Debezium Documentation</a></li>
@@ -285,8 +300,11 @@
     <div class="page-versions">
         <button class="version-menu-toggle versions-menu-current" title="Show other versions of page">nightly</button>
         <div class="version-menu">
-                <a class="version" href="/documentation/reference/1.8/index.html">1.8</a>
                 <a class="version is-current" href="/documentation/reference/nightly/index.html">nightly</a>
+                <a class="version" href="/documentation/reference/2.1/index.html">2.1</a>
+                <a class="version" href="/documentation/reference/2.0/index.html">2.0</a>
+                <a class="version" href="/documentation/reference/1.9/index.html">1.9</a>
+                <a class="version" href="/documentation/reference/1.8/index.html">1.8</a>
                 <a class="version" href="/documentation/reference/1.7/index.html">1.7</a>
                 <a class="version" href="/documentation/reference/1.6/index.html">1.6</a>
                 <a class="version" href="/documentation/reference/1.5/index.html">1.5</a>
@@ -413,7 +431,16 @@ transforms.Reroute.topic.replacement=$1customers_all_shards</code></pre>
 <dd>
 <p>Specifies a regular expression that represents the destination topic name. The transformation routes each matching record to the topic identified by this expression. In this example, records for the three sharded tables listed above would be routed to the <code>myserver.mydb.customers_all_shards</code> topic.</p>
 </dd>
+<dt class="hdlist1"><code>schema.name.adjustment.mode</code></dt>
+<dd>
+<p>Specifies how the message key schema names derived from the resulting topic name should be adjusted for compatibility with the message converter used by the connector. The value can be <code>none</code> (default) or <code>avro</code>.</p>
+</dd>
 </dl>
+</div>
+<div class="paragraph">
+<div class="title">Customizing the configuration</div>
+<p>To customize the configuration you can define <a href="#options-for-applying-the-transformation-selectively">an SMT predicate statement</a> that specifies the tables that you want the transformation to process, or not to process.
+A predicate might be useful if you configure the SMT to route tables that match a regular expression, and you do not want the SMT to reroute one particular table that matches the expression.</p>
 </div>
 </div>
 </div>
@@ -501,7 +528,7 @@ Because the structure of these other messages differs from the structure of the 
 <div class="ulist">
 <ul>
 <li>
-<p><a href="applying-transformations-selectively.html#applying-transformation-selectively" class="page">Configure an SMT predicate for the transformation</a>.</p>
+<p><a href="applying-transformations-selectively.html#applying-transformations-selectively" class="page">Configure an SMT predicate for the transformation</a>.</p>
 </li>
 <li>
 <p>Use the <a href="#by-logical-table-router-topic-regex">topic.regex</a> configuration option for the SMT.</p>
@@ -591,6 +618,28 @@ Specify <code>false</code> if you do not want the transformation to add a key fi
 <p>Specifies a regular expression for determining the value of the inserted key field in terms of the groups captured by the expression specified for <code>key.field.regex</code>. For the SMT to apply this expression, <code>key.enforce.uniqueness</code> must be <code>true</code>, which is the default.</p>
 </div></div></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="by-logical-table-router-schema-name-adjustment-mode"></a><a href="#by-logical-table-router-schema-name-adjustment-mode"><code>schema.name.adjustment.mode</code></a></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>none</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Specify how the message key schema names derived from the resulting topic name should be adjusted for compatibility with the message converter used by the connector, including: <code>none</code> does not apply any adjustment (default), <code>avro</code> replaces the characters that cannot be used in the Avro type name with underscore.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="by-logical-table-router-logical-table-cache-size"></a><a href="#by-logical-table-router-logical-table-cache-size"><code>logical.table.cache.size</code></a></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>16</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The size used for holding the max entries in LRUCache. The cache will keep the old/new schema for logical table key and value, also cache the derived key and topic regex result for improving the source record transformation.</p>
+</div></div></td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -603,7 +652,7 @@ Specify <code>false</code> if you do not want the transformation to add a key fi
 
 <div id="toc-rightbar"></div>    <footer class="footer">
         <div class="wrapper">
-            <div class="copyright">Copyright &copy; 2021 Debezium Community (Rev: <span class="truncated"><a href="https://github.com/debezium/debezium/commit/4a0445d24936e2c04412153a543f3e526e1bc507">4a0445d2</a></span>)
+            <div class="copyright">Copyright &copy; 2022 Debezium Community (Rev: <span class="truncated"><a href="https://github.com/debezium/debezium/commit/6cb73401a83bb3a6d303839cfe5a881f9f2a2307">6cb73401</a></span>)
             
         </div>
     </footer>

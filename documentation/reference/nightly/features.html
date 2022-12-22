@@ -4,7 +4,7 @@
         <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Debezium Features :: Debezium Documentation</title>
-    <link rel="canonical" href="https://debezium.io/documentation/reference/1.7/features.html">
+    <link rel="canonical" href="https://debezium.io/documentation/reference/stable/features.html">
     <meta name="generator" content="Antora 3.0.0-alpha.9">
 <link rel="stylesheet" href="../debezium-antora/css/site.css">
 <link rel="stylesheet" href="../debezium-antora/css/debezium-antora.css">
@@ -120,6 +120,9 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="connectors/vitess.html">Vitess</a>
   </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="connectors/spanner.html">Spanner</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
@@ -202,6 +205,9 @@
     <a class="nav-link" href="operations/monitoring.html">Monitoring</a>
   </li>
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="operations/kubernetes.html">Running on Kubernetes</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="operations/openshift.html">Running on Openshift</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -226,11 +232,20 @@
     <li class="component is-current">
       <span class="title">Debezium Documentation</span>
       <ul class="versions">
-        <li class="version">
-          <a href="/documentation/reference/1.8/index.html">1.8</a>
-        </li>
         <li class="version is-current">
           <a href="/documentation/reference/nightly/index.html">nightly</a>
+        </li>
+        <li class="version">
+          <a href="/documentation/reference/2.1/index.html">2.1</a>
+        </li>
+        <li class="version">
+          <a href="/documentation/reference/2.0/index.html">2.0</a>
+        </li>
+        <li class="version">
+          <a href="/documentation/reference/1.9/index.html">1.9</a>
+        </li>
+        <li class="version">
+          <a href="/documentation/reference/1.8/index.html">1.8</a>
         </li>
         <li class="version">
           <a href="/documentation/reference/1.7/index.html">1.7</a>
@@ -272,7 +287,7 @@
 <main role="main" class="main">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="1.7/index.html" class="home-link"></a>
+  <a href="stable/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">Debezium Documentation</a></li>
@@ -285,8 +300,11 @@
     <div class="page-versions">
         <button class="version-menu-toggle versions-menu-current" title="Show other versions of page">nightly</button>
         <div class="version-menu">
-                <a class="version" href="/documentation/reference/1.8/index.html">1.8</a>
                 <a class="version is-current" href="/documentation/reference/nightly/index.html">nightly</a>
+                <a class="version" href="/documentation/reference/2.1/index.html">2.1</a>
+                <a class="version" href="/documentation/reference/2.0/index.html">2.0</a>
+                <a class="version" href="/documentation/reference/1.9/index.html">1.9</a>
+                <a class="version" href="/documentation/reference/1.8/index.html">1.8</a>
                 <a class="version" href="/documentation/reference/1.7/index.html">1.7</a>
                 <a class="version" href="/documentation/reference/1.6/index.html">1.6</a>
                 <a class="version" href="/documentation/reference/1.5/index.html">1.5</a>
@@ -347,7 +365,7 @@ log-based CDC as implemented by Debezium:</p>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Snapshots:</strong> optionally, an initial snapshot of a database&#8217;s current state can be taken if a connector is started and not all logs still exist. Typically, this is the case when the database has been running for some time and has discarded trannsaction logs that are no longer needed for transaction recovery or replication. There are different modes for performing snapshots, including support for <em>incremental</em> snapshots, which can be triggered at connector runtime. For more details, see the documentation for the connector that you are using.</p>
+<p><strong>Snapshots:</strong> optionally, an initial snapshot of a database&#8217;s current state can be taken if a connector is started and not all logs still exist. Typically, this is the case when the database has been running for some time and has discarded transaction logs that are no longer needed for transaction recovery or replication. There are different modes for performing snapshots, including support for <em>incremental</em> snapshots, which can be triggered at connector runtime. For more details, see the documentation for the connector that you are using.</p>
 </li>
 <li>
 <p><strong>Filters:</strong> you can configure the set of captured schemas, tables and columns with include/exclude list filters.</p>
@@ -378,7 +396,7 @@ via <a href="operations/debezium-server.html" class="page">Debezium Server</a>, 
 
 <div id="toc-rightbar"></div>    <footer class="footer">
         <div class="wrapper">
-            <div class="copyright">Copyright &copy; 2021 Debezium Community (Rev: <span class="truncated"><a href="https://github.com/debezium/debezium/commit/4a0445d24936e2c04412153a543f3e526e1bc507">4a0445d2</a></span>)
+            <div class="copyright">Copyright &copy; 2022 Debezium Community (Rev: <span class="truncated"><a href="https://github.com/debezium/debezium/commit/6cb73401a83bb3a6d303839cfe5a881f9f2a2307">6cb73401</a></span>)
             
         </div>
     </footer>

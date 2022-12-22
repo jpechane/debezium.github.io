@@ -4,7 +4,7 @@
         <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Integration Testing with Testcontainers :: Debezium Documentation</title>
-    <link rel="canonical" href="https://debezium.io/documentation/reference/1.7/integrations/testcontainers.html">
+    <link rel="canonical" href="https://debezium.io/documentation/reference/stable/integrations/testcontainers.html">
     <meta name="generator" content="Antora 3.0.0-alpha.9">
 <link rel="stylesheet" href="../../debezium-antora/css/site.css">
 <link rel="stylesheet" href="../../debezium-antora/css/debezium-antora.css">
@@ -120,6 +120,9 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../connectors/vitess.html">Vitess</a>
   </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../connectors/spanner.html">Spanner</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
@@ -202,6 +205,9 @@
     <a class="nav-link" href="../operations/monitoring.html">Monitoring</a>
   </li>
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../operations/kubernetes.html">Running on Kubernetes</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../operations/openshift.html">Running on Openshift</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -226,11 +232,20 @@
     <li class="component is-current">
       <span class="title">Debezium Documentation</span>
       <ul class="versions">
-        <li class="version">
-          <a href="/documentation/reference/1.8/index.html">1.8</a>
-        </li>
         <li class="version is-current">
           <a href="/documentation/reference/nightly/index.html">nightly</a>
+        </li>
+        <li class="version">
+          <a href="/documentation/reference/2.1/index.html">2.1</a>
+        </li>
+        <li class="version">
+          <a href="/documentation/reference/2.0/index.html">2.0</a>
+        </li>
+        <li class="version">
+          <a href="/documentation/reference/1.9/index.html">1.9</a>
+        </li>
+        <li class="version">
+          <a href="/documentation/reference/1.8/index.html">1.8</a>
         </li>
         <li class="version">
           <a href="/documentation/reference/1.7/index.html">1.7</a>
@@ -272,7 +287,7 @@
 <main role="main" class="main">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="../1.7/index.html" class="home-link"></a>
+  <a href="../stable/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Debezium Documentation</a></li>
@@ -285,8 +300,11 @@
     <div class="page-versions">
         <button class="version-menu-toggle versions-menu-current" title="Show other versions of page">nightly</button>
         <div class="version-menu">
-                <a class="version" href="/documentation/reference/1.8/index.html">1.8</a>
                 <a class="version is-current" href="/documentation/reference/nightly/index.html">nightly</a>
+                <a class="version" href="/documentation/reference/2.1/index.html">2.1</a>
+                <a class="version" href="/documentation/reference/2.0/index.html">2.0</a>
+                <a class="version" href="/documentation/reference/1.9/index.html">1.9</a>
+                <a class="version" href="/documentation/reference/1.8/index.html">1.8</a>
                 <a class="version" href="/documentation/reference/1.7/index.html">1.7</a>
                 <a class="version" href="/documentation/reference/1.6/index.html">1.6</a>
                 <a class="version" href="/documentation/reference/1.5/index.html">1.5</a>
@@ -381,7 +399,7 @@ allowing you to focus on the essential logic of your tests.</p>
 <pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;dependency&gt;
   &lt;groupId&gt;io.debezium&lt;/groupId&gt;
   &lt;artifactId&gt;debezium-testing-testcontainers&lt;/artifactId&gt;
-  &lt;version&gt;1.8.0.Final&lt;/version&gt;
+  &lt;version&gt;2.1.0.Final&lt;/version&gt;
   &lt;scope&gt;test&lt;/scope&gt;
 &lt;/dependency&gt;
 &lt;dependency&gt;
@@ -429,7 +447,7 @@ The existing Testcontainers support for <a href="https://www.testcontainers.org/
                 .withNetworkAliases("postgres"); <i class="conum" data-value="3"></i><b>(3)</b>
 
     public static DebeziumContainer debeziumContainer =
-            new DebeziumContainer("debezium/connect:1.8.0.Final")
+            new DebeziumContainer("debezium/connect:2.1.0.Final")
                 .withNetwork(network)
                 .withKafka(kafkaContainer)
                 .dependsOn(kafkaContainer); <i class="conum" data-value="4"></i><b>(4)</b>
@@ -459,7 +477,7 @@ The existing Testcontainers support for <a href="https://www.testcontainers.org/
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>Set up a container for Kafka Connect with Debezium 1.8.0.Final</td>
+<td>Set up a container for Kafka Connect with Debezium 2.1.0.Final</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="5"></i><b>5</b></td>
@@ -497,7 +515,7 @@ public void canRegisterPostgreSqlConnector() throws Exception {
 
         ConnectorConfiguration connector = ConnectorConfiguration
                 .forJdbcContainer(postgresContainer)
-                .with("database.server.name", "dbserver1");
+                .with("topic.prefix", "dbserver1");
 
         debeziumContainer.registerConnector("my-connector",
                 connector); <i class="conum" data-value="2"></i><b>(2)</b>
@@ -540,7 +558,7 @@ private KafkaConsumer&lt;String, String&gt; getConsumer(
             KafkaContainer kafkaContainer) {
 
     return new KafkaConsumer&lt;&gt;(
-            ImmutableMap.of(
+            Map.of(
                     ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG,
                             kafkaContainer.getBootstrapServers(),
                     ConsumerConfig.GROUP_ID_CONFIG,
@@ -595,7 +613,7 @@ private List&lt;ConsumerRecord&lt;String, String&gt;&gt; drain(
 
 <div id="toc-rightbar"></div>    <footer class="footer">
         <div class="wrapper">
-            <div class="copyright">Copyright &copy; 2021 Debezium Community (Rev: <span class="truncated"><a href="https://github.com/debezium/debezium/commit/4a0445d24936e2c04412153a543f3e526e1bc507">4a0445d2</a></span>)
+            <div class="copyright">Copyright &copy; 2022 Debezium Community (Rev: <span class="truncated"><a href="https://github.com/debezium/debezium/commit/6cb73401a83bb3a6d303839cfe5a881f9f2a2307">6cb73401</a></span>)
             
         </div>
     </footer>

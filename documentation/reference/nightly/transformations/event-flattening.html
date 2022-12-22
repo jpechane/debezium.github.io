@@ -4,7 +4,7 @@
         <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>New Record State Extraction :: Debezium Documentation</title>
-    <link rel="canonical" href="https://debezium.io/documentation/reference/1.7/transformations/event-flattening.html">
+    <link rel="canonical" href="https://debezium.io/documentation/reference/stable/transformations/event-flattening.html">
     <meta name="generator" content="Antora 3.0.0-alpha.9">
 <link rel="stylesheet" href="../../debezium-antora/css/site.css">
 <link rel="stylesheet" href="../../debezium-antora/css/debezium-antora.css">
@@ -120,6 +120,9 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../connectors/vitess.html">Vitess</a>
   </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../connectors/spanner.html">Spanner</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
@@ -202,6 +205,9 @@
     <a class="nav-link" href="../operations/monitoring.html">Monitoring</a>
   </li>
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../operations/kubernetes.html">Running on Kubernetes</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../operations/openshift.html">Running on Openshift</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -226,11 +232,20 @@
     <li class="component is-current">
       <span class="title">Debezium Documentation</span>
       <ul class="versions">
-        <li class="version">
-          <a href="/documentation/reference/1.8/index.html">1.8</a>
-        </li>
         <li class="version is-current">
           <a href="/documentation/reference/nightly/index.html">nightly</a>
+        </li>
+        <li class="version">
+          <a href="/documentation/reference/2.1/index.html">2.1</a>
+        </li>
+        <li class="version">
+          <a href="/documentation/reference/2.0/index.html">2.0</a>
+        </li>
+        <li class="version">
+          <a href="/documentation/reference/1.9/index.html">1.9</a>
+        </li>
+        <li class="version">
+          <a href="/documentation/reference/1.8/index.html">1.8</a>
         </li>
         <li class="version">
           <a href="/documentation/reference/1.7/index.html">1.7</a>
@@ -272,7 +287,7 @@
 <main role="main" class="main">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="../1.7/index.html" class="home-link"></a>
+  <a href="../stable/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Debezium Documentation</a></li>
@@ -285,8 +300,11 @@
     <div class="page-versions">
         <button class="version-menu-toggle versions-menu-current" title="Show other versions of page">nightly</button>
         <div class="version-menu">
-                <a class="version" href="/documentation/reference/1.8/index.html">1.8</a>
                 <a class="version is-current" href="/documentation/reference/nightly/index.html">nightly</a>
+                <a class="version" href="/documentation/reference/2.1/index.html">2.1</a>
+                <a class="version" href="/documentation/reference/2.0/index.html">2.0</a>
+                <a class="version" href="/documentation/reference/1.9/index.html">1.9</a>
+                <a class="version" href="/documentation/reference/1.8/index.html">1.8</a>
                 <a class="version" href="/documentation/reference/1.7/index.html">1.7</a>
                 <a class="version" href="/documentation/reference/1.6/index.html">1.6</a>
                 <a class="version" href="/documentation/reference/1.5/index.html">1.5</a>
@@ -497,7 +515,7 @@ transforms.unwrap.type=io.debezium.transforms.ExtractNewRecordState</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>As for any Kafka Connect connector configuration, you can set <code>transforms=</code> to multiple, comma-separated, SMT aliases in the order in which you want Kafka Connect to apply the SMTs.</p>
+<p>As with any Kafka Connect connector configuration, you can set <code>transforms=</code> to multiple, comma-separated, SMT aliases in the order in which you want Kafka Connect to apply the SMTs.</p>
 </div>
 <div class="paragraph">
 <p>The following <code>.properties</code> example sets several event flattening SMT options:</p>
@@ -535,6 +553,11 @@ transforms.unwrap.add.fields=table,lsn</code></pre>
 <p>Adds change event metadata for the <code>table</code> and <code>lsn</code> fields to the simplified Kafka record.</p>
 </dd>
 </dl>
+</div>
+<div class="paragraph">
+<div class="title">Customizing the configuration</div>
+<p>The connector might emit many types of event messages (heartbeat messages, tombstone messages, or metadata messages about transactions or schema changes).
+To apply the transformation to a subset of events, you can define <a href="#options-for-applying-the-transformation-selectively">an SMT predicate statement that selectively applies the transformation</a> to specific events only.</p>
 </div>
 </div>
 </div>
@@ -608,7 +631,7 @@ transforms.unwrap.delete.handling.mode=rewrite</pre>
 Because the structure of these other messages differs from the structure of the change event messages that the SMT is designed to process, it&#8217;s best to configure the connector to selectively apply the SMT, so that it processes only the intended data change messages.</p>
 </div>
 <div class="paragraph">
-<p>For more information about how to apply the SMT selectively, see <a href="applying-transformations-selectively.html#applying-transformation-selectively" class="page">Configure an SMT predicate for the transformation</a>.</p>
+<p>For more information about how to apply the SMT selectively, see <a href="applying-transformations-selectively.html#applying-transformations-selectively" class="page">Configure an SMT predicate for the transformation</a>.</p>
 </div>
 </div>
 </div>
@@ -738,7 +761,7 @@ If you specify a field that is not in the change event record, the SMT does not 
 
 <div id="toc-rightbar"></div>    <footer class="footer">
         <div class="wrapper">
-            <div class="copyright">Copyright &copy; 2021 Debezium Community (Rev: <span class="truncated"><a href="https://github.com/debezium/debezium/commit/4a0445d24936e2c04412153a543f3e526e1bc507">4a0445d2</a></span>)
+            <div class="copyright">Copyright &copy; 2022 Debezium Community (Rev: <span class="truncated"><a href="https://github.com/debezium/debezium/commit/6cb73401a83bb3a6d303839cfe5a881f9f2a2307">6cb73401</a></span>)
             
         </div>
     </footer>
