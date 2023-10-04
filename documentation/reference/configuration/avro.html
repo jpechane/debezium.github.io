@@ -87,6 +87,9 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="signalling.html">Sending Signals to Debezium</a>
   </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="notification.html">Receive notifications from Debezium</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
@@ -123,6 +126,9 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../connectors/spanner.html">Spanner</a>
   </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../connectors/jdbc.html">Jdbc</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
@@ -142,6 +148,9 @@
     <a class="nav-link" href="../transformations/mongodb-event-flattening.html">MongoDB New Document State Extraction</a>
   </li>
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../transformations/event-changes.html">Event Changes</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../transformations/outbox-event-router.html">Outbox Event Router</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -151,10 +160,25 @@
     <a class="nav-link" href="../transformations/filtering.html">Message Filtering</a>
   </li>
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../transformations/schema-change-event-filter.html">Schema Change Event Filtering</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../transformations/content-based-routing.html">Content-Based Routing</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../transformations/applying-transformations-selectively.html">Using SMT Predicates to Selectively Apply Transformations</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../transformations/compute-partition.html">Compute Partition [Deprecated]</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../transformations/partition-routing.html">Partition Routing</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../transformations/header-to-value.html">HeaderToValue</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../transformations/timezone-converter.html">Timezone Converter</a>
   </li>
 </ul>
   </li>
@@ -236,6 +260,15 @@
           <a href="/documentation/reference/nightly/index.html">nightly</a>
         </li>
         <li class="version">
+          <a href="/documentation/reference/2.4/index.html">2.4</a>
+        </li>
+        <li class="version">
+          <a href="/documentation/reference/2.3/index.html">2.3</a>
+        </li>
+        <li class="version">
+          <a href="/documentation/reference/2.2/index.html">2.2</a>
+        </li>
+        <li class="version">
           <a href="/documentation/reference/2.1/index.html">2.1</a>
         </li>
         <li class="version">
@@ -301,6 +334,9 @@
         <button class="version-menu-toggle versions-menu-current" title="Show other versions of page">nightly</button>
         <div class="version-menu">
                 <a class="version is-current" href="/documentation/reference/nightly/index.html">nightly</a>
+                <a class="version" href="/documentation/reference/2.4/index.html">2.4</a>
+                <a class="version" href="/documentation/reference/2.3/index.html">2.3</a>
+                <a class="version" href="/documentation/reference/2.2/index.html">2.2</a>
                 <a class="version" href="/documentation/reference/2.1/index.html">2.1</a>
                 <a class="version" href="/documentation/reference/2.0/index.html">2.0</a>
                 <a class="version" href="/documentation/reference/1.9/index.html">1.9</a>
@@ -488,7 +524,7 @@ Messages do not contain the schema information themselves, but only a schema ID.
 <p>Deploy an <a href="https://github.com/Apicurio/apicurio-registry">Apicurio API and Schema Registry</a> instance.</p>
 </li>
 <li>
-<p>Install the Avro converter from the <a href="https://repo1.maven.org/maven2/io/apicurio/apicurio-registry-distro-connect-converter/2.2.5.Final/apicurio-registry-distro-connect-converter-2.2.5.Final.tar.gz">installation package</a> into a plug-in directory. If you are using the <a href="https://quay.io/repository/debezium/connect">Debezium Connect container image</a>, it&#8217;s not necessary to install the package. For more information, see  <a href="#deploying-with-debezium-containers">Deploying Apicurio Registry with Debezium containers</a>.</p>
+<p>Install the Avro converter from the <a href="https://repo1.maven.org/maven2/io/apicurio/apicurio-registry-distro-connect-converter/2.4.3.Final/apicurio-registry-distro-connect-converter-2.4.3.Final.tar.gz">installation package</a> into a plug-in directory. If you are using the <a href="https://quay.io/repository/debezium/connect">Debezium Connect container image</a>, it&#8217;s not necessary to install the package. For more information, see  <a href="#deploying-with-debezium-containers">Deploying Apicurio Registry with Debezium containers</a>.</p>
 </li>
 <li>
 <p>Configure a Debezium connector instance to use Avro serialization by setting configuration properties as follows:</p>
@@ -539,7 +575,7 @@ schema.name.adjustment.mode=avro</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-none hljs">docker run -it --rm --name apicurio \
-    -p 8080:8080 apicurio/apicurio-registry-mem:2.2.5.Final</code></pre>
+    -p 8080:8080 apicurio/apicurio-registry-mem:2.4.3.Final</code></pre>
 </div>
 </div>
 </li>
@@ -567,7 +603,7 @@ schema.name.adjustment.mode=avro</code></pre>
     -e CONNECT_VALUE_CONVERTER_APICURIO_REGISTRY_AUTO-REGISTER=true \
     -e CONNECT_VALUE_CONVERTER_APICURIO_REGISTRY_FIND-LATEST=true \
     -e CONNECT_SCHEMA_NAME_ADJUSTMENT_MODE=avro \
-    -p 8083:8083 debezium/connect:2.1</code></pre>
+    -p 8083:8083 quay.io/debezium/connect:2.4</code></pre>
 </div>
 </div>
 </li>
@@ -670,7 +706,7 @@ value.converter.schema.registry.url=http://localhost:8081</code></pre>
     -e VALUE_CONVERTER=io.confluent.connect.avro.AvroConverter \
     -e CONNECT_KEY_CONVERTER_SCHEMA_REGISTRY_URL=http://schema-registry:8081 \
     -e CONNECT_VALUE_CONVERTER_SCHEMA_REGISTRY_URL=http://schema-registry:8081 \
-    -p 8083:8083 debezium/connect:2.1</code></pre>
+    -p 8083:8083 quay.io/debezium/connect:2.4</code></pre>
 </div>
 </div>
 </li>
@@ -683,7 +719,7 @@ value.converter.schema.registry.url=http://localhost:8081</code></pre>
     --link kafka:kafka \
     --link mysql:mysql \
     --link schema-registry:schema-registry \
-    debezium/connect:2.1 \
+    quay.io/debezium/connect:2.4 \
     /kafka/bin/kafka-console-consumer.sh \
       --bootstrap-server kafka:9092 \
       --property print.key=true \
@@ -717,8 +753,8 @@ value.converter.schema.registry.url=http://localhost:8081</code></pre>
 <div class="paragraph">
 <p>Debezium uses the column&#8217;s name as the basis for the corresponding Avro field.
 This can lead to problems during serialization if the column name does not also adhere to the Avro naming rules.
-Each Debezium connector provides a configuration property, <code>sanitize.field.names</code> that you can set to <code>true</code> if you have columns that do not adhere to Avro rules for names.
-Setting <code>sanitize.field.names</code> to <code>true</code> allows serialization of non-conformant fields without having to actually modify your schema.</p>
+Each Debezium connector provides a configuration property, <code>field.name.adjustment.mode</code> that you can set to <code>avro</code> if you have columns that do not adhere to Avro rules for names.
+Setting <code>field.name.adjustment.mode</code> to <code>avro</code> allows serialization of non-conformant fields without having to actually modify your schema.</p>
 </div>
 </div>
 </div>
@@ -744,7 +780,7 @@ see <a href="https://github.com/debezium/debezium-examples/tree/main/tutorial#us
 
 <div id="toc-rightbar"></div>    <footer class="footer">
         <div class="wrapper">
-            <div class="copyright">Copyright &copy; 2022 Debezium Community (Rev: <span class="truncated"><a href="https://github.com/debezium/debezium/commit/6cb73401a83bb3a6d303839cfe5a881f9f2a2307">6cb73401</a></span>)
+            <div class="copyright">Copyright &copy; 2023 Debezium Community (Rev: <span class="truncated"><a href="https://github.com/debezium/debezium/commit/78c44c937c105375a5849e9d4e4b6d1848f48044">78c44c93</a></span>)
             
         </div>
     </footer>

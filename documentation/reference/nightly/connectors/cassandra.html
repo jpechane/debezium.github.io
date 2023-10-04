@@ -87,6 +87,9 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../configuration/signalling.html">Sending Signals to Debezium</a>
   </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../configuration/notification.html">Receive notifications from Debezium</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
@@ -123,6 +126,9 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="spanner.html">Spanner</a>
   </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="jdbc.html">Jdbc</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
@@ -142,6 +148,9 @@
     <a class="nav-link" href="../transformations/mongodb-event-flattening.html">MongoDB New Document State Extraction</a>
   </li>
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../transformations/event-changes.html">Event Changes</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../transformations/outbox-event-router.html">Outbox Event Router</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -151,10 +160,25 @@
     <a class="nav-link" href="../transformations/filtering.html">Message Filtering</a>
   </li>
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../transformations/schema-change-event-filter.html">Schema Change Event Filtering</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../transformations/content-based-routing.html">Content-Based Routing</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../transformations/applying-transformations-selectively.html">Using SMT Predicates to Selectively Apply Transformations</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../transformations/compute-partition.html">Compute Partition [Deprecated]</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../transformations/partition-routing.html">Partition Routing</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../transformations/header-to-value.html">HeaderToValue</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../transformations/timezone-converter.html">Timezone Converter</a>
   </li>
 </ul>
   </li>
@@ -236,6 +260,15 @@
           <a href="/documentation/reference/nightly/index.html">nightly</a>
         </li>
         <li class="version">
+          <a href="/documentation/reference/2.4/index.html">2.4</a>
+        </li>
+        <li class="version">
+          <a href="/documentation/reference/2.3/index.html">2.3</a>
+        </li>
+        <li class="version">
+          <a href="/documentation/reference/2.2/index.html">2.2</a>
+        </li>
+        <li class="version">
           <a href="/documentation/reference/2.1/index.html">2.1</a>
         </li>
         <li class="version">
@@ -301,6 +334,9 @@
         <button class="version-menu-toggle versions-menu-current" title="Show other versions of page">nightly</button>
         <div class="version-menu">
                 <a class="version is-current" href="/documentation/reference/nightly/index.html">nightly</a>
+                <a class="version" href="/documentation/reference/2.4/index.html">2.4</a>
+                <a class="version" href="/documentation/reference/2.3/index.html">2.3</a>
+                <a class="version" href="/documentation/reference/2.2/index.html">2.2</a>
                 <a class="version" href="/documentation/reference/2.1/index.html">2.1</a>
                 <a class="version" href="/documentation/reference/2.0/index.html">2.0</a>
                 <a class="version" href="/documentation/reference/1.9/index.html">1.9</a>
@@ -1074,7 +1110,7 @@ VALUES (
   }
   },
   "source": {
-    "version": "2.1.0.Final",
+    "version": "2.4.0.Final",
     "connector": "cassandra",
     "cluster": "cassandra-cluster-1",
     "snapshot": false,
@@ -1125,7 +1161,7 @@ WHERE id = 1001 AND registration_date = 1562202942545</code></pre>
   }
   },
   "source": {
-    "version": "2.1.0.Final",
+    "version": "2.4.0.Final",
     "connector": "cassandra",
     "cluster": "cassandra-cluster-1",
     "snapshot": false,
@@ -1192,7 +1228,7 @@ WHERE id = 1001 AND registration_date = 1562202942545;</code></pre>
   "email": null
   },
   "source": {
-    "version": "2.1.0.Final",
+    "version": "2.4.0.Final",
     "connector": "cassandra",
     "cluster": "cassandra-cluster-1",
     "snapshot": false,
@@ -2476,18 +2512,6 @@ Fully-qualified names for fields are in the form keyspace_name&gt;.&lt;field_nam
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="cassandra-property-sanitize-field-names"></a><a href="#cassandra-property-sanitize-field-names"><code>sanitize.field.names</code></a></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><code>true</code> when connector configuration explicitly specifies the <code>key.converter</code> or <code>value.converter</code> parameters to use Avro, otherwise defaults to <code>false</code>.</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Whether field names will be sanitized to adhere to Avro naming requirements.
-See <a href="../configuration/avro.html#avro-naming" class="page">Avro naming</a> for more details.</p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><a id="cassandra-property-skipped-operations"></a><a href="#cassandra-property-skipped-operations"><code>skipped.operations</code></a></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
@@ -2611,6 +2635,79 @@ For example, if the database server name or topic prefix is <code>fulfillment</c
 <code>string</code> encodes values as formatted strings, which is easy to consume.</p>
 </div></div></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="cassandra-property-schema-name-adjustment-mode"></a><a href="#cassandra-property-schema-name-adjustment-mode"><code>schema.name.adjustment.mode</code></a></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>none</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Specifies how schema names should be adjusted for compatibility with the message converter used by the connector. Possible settings: <br></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>none</code> does not apply any adjustment.<br></p>
+</li>
+<li>
+<p><code>avro</code> replaces the characters that cannot be used in the Avro type name with underscore.<br></p>
+</li>
+<li>
+<p><code>avro_unicode</code> replaces the underscore or characters that cannot be used in the Avro type name with corresponding unicode like _uxxxx. Note: _ is an escape sequence like backslash in Java<br></p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="cassandra-property-field-name-adjustment-mode"></a><a href="#cassandra-property-field-name-adjustment-mode"><code>field.name.adjustment.mode</code></a></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>none</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Specifies how field names should be adjusted for compatibility with the message converter used by the connector. Possible settings: <br></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>none</code> does not apply any adjustment.<br></p>
+</li>
+<li>
+<p><code>avro</code> replaces the characters that cannot be used in the Avro type name with underscore.<br></p>
+</li>
+<li>
+<p><code>avro_unicode</code> replaces the underscore or characters that cannot be used in the Avro type name with corresponding unicode like _uxxxx. Note: _ is an escape sequence like backslash in Java<br></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>See <a href="../configuration/avro.html#avro-naming" class="page">Avro naming</a> for more details.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="cassandra-property-custom-metric-tags"></a><a href="#cassandra-property-custom-metric-tags"><code>custom.metric.tags</code></a></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>No default</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The custom metric tags will accept key-value pairs to customize the MBean object name which should be appended the end of regular name, each key would represent a tag for the MBean object name, and the corresponding value would be the value of that tag the key is. For example: <code>k1=v1,k2=v2</code>.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="cassandra-property-errors-max-retires"></a><a href="#cassandra-property-errors-max-retires"><code>errors.max.retries</code></a></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>-1</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The maximum number of retries on retriable errors (e.g. connection errors) before failing (-1 = no limit, 0 = disabled, &gt; 0 = num of retries).</p>
+</div></div></td>
+</tr>
 </tbody>
 </table>
 <div class="paragraph">
@@ -2694,7 +2791,7 @@ com.blueapron.connect.protobuf.ProtobufConverter</code></pre>
 
 <div id="toc-rightbar"></div>    <footer class="footer">
         <div class="wrapper">
-            <div class="copyright">Copyright &copy; 2022 Debezium Community (Rev: <span class="truncated"><a href="https://github.com/debezium/debezium/commit/6cb73401a83bb3a6d303839cfe5a881f9f2a2307">6cb73401</a></span>)
+            <div class="copyright">Copyright &copy; 2023 Debezium Community (Rev: <span class="truncated"><a href="https://github.com/debezium/debezium/commit/78c44c937c105375a5849e9d4e4b6d1848f48044">78c44c93</a></span>)
             
         </div>
     </footer>

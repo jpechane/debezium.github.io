@@ -41,7 +41,7 @@
     </div>
   </nav>
 </header><div class="body">
-<div class="nav-container" data-component="reference" data-version="stable">
+<div class="nav-container" data-component="reference" data-version="2.1">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -235,6 +235,15 @@
         <li class="version">
           <a href="/documentation/reference/nightly/index.html">nightly</a>
         </li>
+        <li class="version">
+          <a href="/documentation/reference/2.4/index.html">2.4</a>
+        </li>
+        <li class="version">
+          <a href="/documentation/reference/2.3/index.html">2.3</a>
+        </li>
+        <li class="version">
+          <a href="/documentation/reference/2.2/index.html">2.2</a>
+        </li>
         <li class="version is-current">
           <a href="/documentation/reference/2.1/index.html">2.1</a>
         </li>
@@ -287,7 +296,7 @@
 <main role="main" class="main">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="../index.html" class="home-link"></a>
+  <a href="../../stable/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Debezium Documentation</a></li>
@@ -301,6 +310,9 @@
         <button class="version-menu-toggle versions-menu-current" title="Show other versions of page">2.1</button>
         <div class="version-menu">
                 <a class="version" href="/documentation/reference/nightly/index.html">nightly</a>
+                <a class="version" href="/documentation/reference/2.4/index.html">2.4</a>
+                <a class="version" href="/documentation/reference/2.3/index.html">2.3</a>
+                <a class="version" href="/documentation/reference/2.2/index.html">2.2</a>
                 <a class="version is-current" href="/documentation/reference/2.1/index.html">2.1</a>
                 <a class="version" href="/documentation/reference/2.0/index.html">2.0</a>
                 <a class="version" href="/documentation/reference/1.9/index.html">1.9</a>
@@ -325,7 +337,12 @@
 <div class="article-cell1">
 <article class="doc">
         
-    <!-- This partial is a placeholder -->            <h1 class="page">Debezium Connector for Oracle</h1>
+    <div class="version-banner version-banner-outdated">
+    You are viewing documentation for an outdated version of Debezium.
+    <br/>
+            If you want to view the latest stable version of this page, please go <a href=/documentation/reference/stable/index.html>here</a>.
+            
+</div>            <h1 class="page">Debezium Connector for Oracle</h1>
         <div id="preamble">
 <div class="sectionbody">
 <div id="toc" class="toc">
@@ -732,8 +749,10 @@ Debezium emits these remaining <code>READ</code> events to the table&#8217;s Kaf
 <div class="sect3">
 <h4 id="oracle-triggering-an-incremental-snapshot"><a class="anchor" href="#oracle-triggering-an-incremental-snapshot"></a>Triggering an incremental snapshot</h4>
 <div class="paragraph">
-<p>Currently, the only way to initiate an incremental snapshot is to send an <a href="../configuration/signalling.html#debezium-signaling-ad-hoc-snapshots" class="page">ad hoc snapshot signal</a> to the signaling table on the source database.
-You submit a signal to the signaling table as SQL <code>INSERT</code> queries.</p>
+<p>Currently, the only way to initiate an incremental snapshot is to send an <a href="../configuration/signalling.html#debezium-signaling-ad-hoc-snapshots" class="page">ad hoc snapshot signal</a> to the signaling table on the source database.</p>
+</div>
+<div class="paragraph">
+<p>You submit a signal to the signaling table as SQL <code>INSERT</code> queries.</p>
 </div>
 <div class="paragraph">
 <p>After Debezium detects the change in the signaling table, it reads the signal, and runs the requested snapshot operation.</p>
@@ -743,8 +762,10 @@ You submit a signal to the signaling table as SQL <code>INSERT</code> queries.</
 Currently, the only valid option for snapshots operations is the default value, <code>incremental</code>.</p>
 </div>
 <div class="paragraph">
-<p>To specify the tables to include in the snapshot, provide a <code>data-collections</code> array that lists the tables or an array of regular expressions used to match tables, for example,<br>
-<code>{"data-collections": ["public.MyFirstTable", "public.MySecondTable"]}</code><br></p>
+<p>To specify the tables to include in the snapshot, provide a <code>data-collections</code> array that lists the tables or an array of regular expressions used to match tables, for example,<br></p>
+</div>
+<div class="paragraph">
+<p><code>{"data-collections": ["public.MyFirstTable", "public.MySecondTable"]}</code><br></p>
 </div>
 <div class="paragraph">
 <p>The <code>data-collections</code> array for an incremental snapshot signal has no default value.
@@ -816,9 +837,9 @@ values ('ad-hoc-1',   <i class="conum" data-value="2"></i><b>(2)</b>
 <table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 3. Descriptions of fields in a SQL command for sending an incremental snapshot signal to the signaling table</caption>
 <colgroup>
-<col style="width: 4%;">
-<col style="width: 11%;">
-<col style="width: 85%;">
+<col style="width: 11.1111%;">
+<col style="width: 22.2222%;">
+<col style="width: 66.6667%;">
 </colgroup>
 <thead>
 <tr>
@@ -844,7 +865,7 @@ Rather, during the snapshot, Debezium generates its own <code>id</code> string a
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>execute-snapshot</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Specifies <code>type</code> parameter specifies the operation that the signal is intended to trigger.<br></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The <code>type</code> parameter specifies the operation that the signal is intended to trigger.<br></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">4</p></td>
@@ -924,7 +945,7 @@ For more information about the <code>additional-condition</code> parameter, see 
 </div>
 </div>
 <div class="paragraph">
-<p>The <code>additional-condition</code> parameter also enables you to pass conditions that are based on more than on column.
+<p>The <code>additional-condition</code> parameter also enables you to pass conditions that are based on more than one column.
 For example, using the <code>products</code> table from the previous example, you can submit a query that triggers an incremental snapshot that includes the data of only those items for which <code>color=blue</code> and <code>quantity&gt;10</code>:</p>
 </div>
 <div class="listingblock">
@@ -989,8 +1010,10 @@ The value for snapshot events is <code>r</code>, signifying a <code>READ</code> 
 <h4 id="oracle-stopping-an-incremental-snapshot"><a class="anchor" href="#oracle-stopping-an-incremental-snapshot"></a>Stopping an incremental snapshot</h4>
 <div class="paragraph">
 <p>You can also stop an incremental snapshot by sending a signal to the table on the source database.
-You submit a stop snapshot signal to the table by sending a SQL <code>INSERT</code> query.
-After Debezium detects the change in the signaling table, it reads the signal, and stops the incremental snapshot operation if it&#8217;s in progress.</p>
+You submit a stop snapshot signal to the table by sending a SQL <code>INSERT</code> query.</p>
+</div>
+<div class="paragraph">
+<p>After Debezium detects the change in the signaling table, it reads the signal, and stops the incremental snapshot operation if it&#8217;s in progress.</p>
 </div>
 <div class="paragraph">
 <p>The query that you submit specifies the snapshot operation of <code>incremental</code>, and, optionally, the tables of the current running snapshot to be removed.</p>
@@ -1044,9 +1067,9 @@ values ('ad-hoc-1',   <i class="conum" data-value="2"></i><b>(2)</b>
 <table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 4. Descriptions of fields in a SQL command for sending a stop incremental snapshot signal to the signaling table</caption>
 <colgroup>
-<col style="width: 4%;">
-<col style="width: 11%;">
-<col style="width: 85%;">
+<col style="width: 11.1111%;">
+<col style="width: 22.2222%;">
+<col style="width: 66.6667%;">
 </colgroup>
 <thead>
 <tr>
@@ -1291,7 +1314,7 @@ The message contains a logical representation of the table schema.</p>
   },
   "payload": {
     "source": {
-      "version": "2.1.0.Final",
+      "version": "2.1.4.Final",
       "connector": "oracle",
       "name": "server1",
       "ts_ms": 1588252618953,
@@ -1678,7 +1701,10 @@ The contents of these configuration properties depend on whether the connector i
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;local-cache name="transactions"&gt;
   &lt;persistence passivation="false"&gt;
-    &lt;file-store fetch-state="true" read-only="false" preload="true" shared="false" segmented="false" path="./data" /&gt;
+    &lt;file-store read-only="false" preload="true" shared="false"&gt;
+      &lt;data path="./data"/&gt;
+      &lt;index path="./index"/&gt;
+    &lt;/file-store&gt;
   &lt;/persistence&gt;
 &lt;/local-cache&gt;</code></pre>
 </div>
@@ -1710,7 +1736,10 @@ Additionally, the location where the cache is kept is defined by the <code>path<
 <pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;distributed-cache name="transactions" statistics="true"&gt;
   &lt;encoding media-type="application/x-protostream" /&gt;
   &lt;persistence passivation="false"&gt;
-    &lt;file-store fetch-state="true" read-only="false" preload="true" shared="false" segmented="false" /&gt;
+   &lt;file-store read-only="false" preload="true" shared="false"&gt;
+     &lt;data path="./data"/&gt;
+     &lt;index path="./index"/&gt;
+   &lt;/file-store&gt;
   &lt;/persistence&gt;
 &lt;/distributed-cache&gt;</code></pre>
 </div>
@@ -2204,7 +2233,7 @@ This field is only present when using the LogMiner connection adapter.</p>
             "EMAIL": "annek@noanswer.org"
         },
         "source": {
-            "version": "2.1.0.Final",
+            "version": "2.1.4.Final",
             "name": "server1",
             "ts_ms": 1520085154000,
             "txId": "6.28.807",
@@ -2297,7 +2326,7 @@ You can use the <a href="../configuration/avro.html#avro-serialization" class="p
             "EMAIL": "anne@example.com"
         },
         "source": {
-            "version": "2.1.0.Final",
+            "version": "2.1.4.Final",
             "name": "server1",
             "ts_ms": 1520085811000,
             "txId": "6.9.809",
@@ -2392,7 +2421,7 @@ The <code>schema</code> portion of the <em>delete</em> event is identical to the
         },
         "after": null,
         "source": {
-            "version": "2.1.0.Final",
+            "version": "2.1.4.Final",
             "name": "server1",
             "ts_ms": 1520085153000,
             "txId": "6.28.807",
@@ -2461,7 +2490,7 @@ The message key is <code>null</code> in this case, the message value looks like 
         "before": null,
         "after": null,
         "source": { <i class="conum" data-value="1"></i><b>(1)</b>
-            "version": "2.1.0.Final",
+            "version": "2.1.4.Final",
             "connector": "oracle",
             "name": "oracle_server",
             "ts_ms": 1638974535000,
@@ -3806,7 +3835,7 @@ If snapshot locks are explicitly disabled via configuration, this grant can be s
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">12</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CREATE ANY SEQUENCE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CREATE SEQUENCE</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enables the connector to create a sequence in its default tablespace.</p></td>
 </tr>
 <tr>
@@ -3879,7 +3908,7 @@ If you use a logical standby, to help ensure that Debezium does not miss any cha
 <div class="title">Procedure</div>
 <ol class="arabic">
 <li>
-<p>Download the Debezium <a href="https://repo1.maven.org/maven2/io/debezium/debezium-connector-oracle/2.1.0.Final/debezium-connector-oracle-2.1.0.Final-plugin.tar.gz">Oracle connector plug-in archive</a>.</p>
+<p>Download the Debezium <a href="https://repo1.maven.org/maven2/io/debezium/debezium-connector-oracle/2.1.4.Final/debezium-connector-oracle-2.1.4.Final-plugin.tar.gz">Oracle connector plug-in archive</a>.</p>
 </li>
 <li>
 <p>Extract the files into your Kafka Connect environment.</p>
@@ -5290,7 +5319,8 @@ By setting this value to something greater than <code>0</code>, this specifies t
 <p><code>20000</code></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>The starting SCN interval size that the connector uses for reading data from redo/archive logs.</p>
+<p>The starting SCN interval size that the connector uses for reading data from redo/archive logs.
+This also servers as a measure for adjusting batch size - when the difference between current SCN and beginning/end SCN of the batch is bigger than this value, batch size is increased/decreased.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -5725,10 +5755,10 @@ For example, if the topic prefix is <code>fulfillment</code>, the default topic 
 <p><a id="oracle-property-database-history-kafka-recovery-attempts"></a><a href="#oracle-property-database-history-kafka-recovery-attempts"><code>schema.history.internal.kafka.recovery.attempts</code></a></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><code>4</code></p>
+<p><code>100</code></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>The maximum number of times that the connector should try to read persisted history data before the connector recovery fails with an error. The maximum amount of time to wait after receiving no data is <code>recovery.attempts</code> x <code>recovery.poll.interval.ms</code>.</p>
+<p>The maximum number of times that the connector should try to read persisted history data before the connector recovery fails with an error. The maximum amount of time to wait after receiving no data is <code>recovery.attempts</code> × <code>recovery.poll.interval.ms</code>.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -7699,13 +7729,6 @@ It&#8217;s important that all data changes be lock-stepped with the schema chang
 This option requires less Oracle database memory and Oracle LogMiner sessions generally start substantially faster since the data dictionary does not need to be loaded or primed by the LogMiner process.</p>
 </div>
 </dd>
-<dt class="hdlist1"><strong>Why are changes made by SYS or SYSTEM users not captured?</strong></dt>
-<dd>
-<p>The Oracle database uses the <code>SYS</code> and <code>SYSTEM</code> user accounts to perform a multitude of internal operations in the redo logs that are not important for change data capture.
-When the Debezium Oracle connector reads changes from Oracle LogMiner, changes made by these two user accounts are filtered out automatically.
-So if you are using either of these two user accounts and not seeing change events, this is why changes made by those users are not captured.
-You should use a designated non-system user account to perform all changes you wish to be captured.</p>
-</dd>
 <dt class="hdlist1"><strong>Why does the connector appear to stop capturing changes on AWS?</strong></dt>
 <dd>
 <p>Due to the <a href="https://aws.amazon.com/blogs/networking-and-content-delivery/best-practices-for-deploying-gateway-load-balancer">fixed idle timeout of 350 seconds on the AWS Gateway Load Balancer</a>,
@@ -7828,7 +7851,7 @@ As a workaround, the include/exclude configuration options can be adjusted to pr
 
 <div id="toc-rightbar"></div>    <footer class="footer">
         <div class="wrapper">
-            <div class="copyright">Copyright &copy; 2022 Debezium Community (Rev: <span class="truncated"><a href="https://github.com/debezium/debezium/commit/88c967fb467d5b9fe3899428afc66553b358c293">88c967fb</a></span>)
+            <div class="copyright">Copyright &copy; 2023 Debezium Community (Rev: <span class="truncated"><a href="https://github.com/debezium/debezium/commit/3a384143abd860706ff65189bfff08e3bed49f1c">3a384143</a></span>)
             
         </div>
     </footer>
