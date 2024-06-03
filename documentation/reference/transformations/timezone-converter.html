@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Timezone Converter :: Debezium Documentation</title>
     <link rel="canonical" href="https://debezium.io/documentation/reference/stable/transformations/timezone-converter.html">
-    <meta name="generator" content="Antora 3.0.0-alpha.9">
+    <meta name="generator" content="Antora 3.1.7">
 <link rel="stylesheet" href="../../debezium-antora/css/site.css">
 <link rel="stylesheet" href="../../debezium-antora/css/debezium-antora.css">
 <link rel="stylesheet" href="../../debezium-antora/css/highlightjs-dark.css">
@@ -127,7 +127,10 @@
     <a class="nav-link" href="../connectors/spanner.html">Spanner</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../connectors/jdbc.html">Jdbc</a>
+    <a class="nav-link" href="../connectors/jdbc.html">JDBC</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../connectors/informix.html">Informix</a>
   </li>
 </ul>
   </li>
@@ -169,9 +172,6 @@
     <a class="nav-link" href="applying-transformations-selectively.html">Using SMT Predicates to Selectively Apply Transformations</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="compute-partition.html">Compute Partition [Deprecated]</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="partition-routing.html">Partition Routing</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -179,6 +179,24 @@
   </li>
   <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="timezone-converter.html">Timezone Converter</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="timescaledb.html">TimescaleDB Integration</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="convert-cloudevent-to-saveable-form.html">Convert CloudEvents to Saveable Form</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Post Processors</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../post-processors/index.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../post-processors/reselect-columns.html">Reselect Columns</a>
   </li>
 </ul>
   </li>
@@ -208,7 +226,7 @@
     <a class="nav-link" href="../integrations/cloudevents.html">CloudEvents</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../integrations/tracing.html">OpenTracing</a>
+    <a class="nav-link" href="../integrations/tracing.html">OpenTelemetry</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../integrations/testcontainers.html">Integration Testing with Testcontainers</a>
@@ -235,9 +253,6 @@
     <a class="nav-link" href="../operations/openshift.html">Running on Openshift</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../operations/embedded.html">Embedding Debezium</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../operations/debezium-ui.html">Debezium UI</a>
   </li>
 </ul>
@@ -260,6 +275,15 @@
           <a href="/documentation/reference/nightly/index.html">nightly</a>
         </li>
         <li class="version">
+          <a href="/documentation/reference/2.6/index.html">2.6</a>
+        </li>
+        <li class="version">
+          <a href="/documentation/reference/2.7/index.html">2.7</a>
+        </li>
+        <li class="version">
+          <a href="/documentation/reference/2.5/index.html">2.5</a>
+        </li>
+        <li class="version">
           <a href="/documentation/reference/2.4/index.html">2.4</a>
         </li>
         <li class="version">
@@ -273,42 +297,6 @@
         </li>
         <li class="version">
           <a href="/documentation/reference/2.0/index.html">2.0</a>
-        </li>
-        <li class="version">
-          <a href="/documentation/reference/1.9/index.html">1.9</a>
-        </li>
-        <li class="version">
-          <a href="/documentation/reference/1.8/index.html">1.8</a>
-        </li>
-        <li class="version">
-          <a href="/documentation/reference/1.7/index.html">1.7</a>
-        </li>
-        <li class="version">
-          <a href="/documentation/reference/1.6/index.html">1.6</a>
-        </li>
-        <li class="version">
-          <a href="/documentation/reference/1.5/index.html">1.5</a>
-        </li>
-        <li class="version">
-          <a href="/documentation/reference/1.4/index.html">1.4</a>
-        </li>
-        <li class="version">
-          <a href="/documentation/reference/1.3/index.html">1.3</a>
-        </li>
-        <li class="version">
-          <a href="/documentation/reference/1.2/index.html">1.2</a>
-        </li>
-        <li class="version">
-          <a href="/documentation/reference/1.1/index.html">1.1</a>
-        </li>
-        <li class="version">
-          <a href="/documentation/reference/1.0/index.html">1.0</a>
-        </li>
-        <li class="version">
-          <a href="/documentation/reference/0.10/index.html">0.10</a>
-        </li>
-        <li class="version">
-          <a href="/documentation/reference/0.9/index.html">0.9</a>
         </li>
       </ul>
     </li>
@@ -334,23 +322,14 @@
         <button class="version-menu-toggle versions-menu-current" title="Show other versions of page">nightly</button>
         <div class="version-menu">
                 <a class="version is-current" href="/documentation/reference/nightly/index.html">nightly</a>
+                <a class="version" href="/documentation/reference/2.6/index.html">2.6</a>
+                <a class="version" href="/documentation/reference/2.7/index.html">2.7</a>
+                <a class="version" href="/documentation/reference/2.5/index.html">2.5</a>
                 <a class="version" href="/documentation/reference/2.4/index.html">2.4</a>
                 <a class="version is-missing" href="/documentation/reference/2.3/index.html">2.3</a>
                 <a class="version is-missing" href="/documentation/reference/2.2/index.html">2.2</a>
                 <a class="version is-missing" href="/documentation/reference/2.1/index.html">2.1</a>
                 <a class="version is-missing" href="/documentation/reference/2.0/index.html">2.0</a>
-                <a class="version is-missing" href="/documentation/reference/1.9/index.html">1.9</a>
-                <a class="version is-missing" href="/documentation/reference/1.8/index.html">1.8</a>
-                <a class="version is-missing" href="/documentation/reference/1.7/index.html">1.7</a>
-                <a class="version is-missing" href="/documentation/reference/1.6/index.html">1.6</a>
-                <a class="version is-missing" href="/documentation/reference/1.5/index.html">1.5</a>
-                <a class="version is-missing" href="/documentation/reference/1.4/index.html">1.4</a>
-                <a class="version is-missing" href="/documentation/reference/1.3/index.html">1.3</a>
-                <a class="version is-missing" href="/documentation/reference/1.2/index.html">1.2</a>
-                <a class="version is-missing" href="/documentation/reference/1.1/index.html">1.1</a>
-                <a class="version is-missing" href="/documentation/reference/1.0/index.html">1.0</a>
-                <a class="version is-missing" href="/documentation/reference/0.10/index.html">0.10</a>
-                <a class="version is-missing" href="/documentation/reference/0.9/index.html">0.9</a>
         </div>
         |
     </div>
@@ -382,14 +361,14 @@
 </ul>
 </div>
 <div id="timezone-converter-introduction" class="paragraph">
-<p>When Debezium emits event records, the timezone values for timestamp fields in the record can vary depending on the type and configuration of the data source.
+<p>When Debezium emits event records, the timezone values for timestamp fields in the record can vary, depending on the type and configuration of the data source.
 To maintain data consistency and precision within data processing pipelines and applications, you can use the <code>Timezone Converter</code> SMT to ensure that event records use a consistent timezone to represent timestamp data.</p>
 </div>
 <div class="paragraph">
 <p>The SMT converts the value of the specified field to the target timezone by using the <code>converted.timezone</code> configuration option.
 You can specify the target timezone as a geographic timezone, for example,  <code>America/New_York</code>, or as a UTC offset, such as <code>+02:00</code>.
 It is assumed that the fields of the record are in UTC.
-Along with the specified timezone, the SMT also provides configuration options to include or exclude specific fields from timezone conversion using the <code>include.fields</code> and <code>exclude.fields</code> configuration options.</p>
+Along with the specified timezone, the SMT also provides configuration options to include or exclude specific fields from timezone conversion using the <code>include.list</code> and <code>exclude.list</code> configuration options.</p>
 </div>
 <div class="paragraph">
 <p>The SMT supports all Debezium and Kafka Connect temporal and non-temporal types.</p>
@@ -418,7 +397,24 @@ Providing a fixed UTC offset is useful when converting timestamp fields to a spe
 </td>
 <td class="content">
 <div class="paragraph">
-<p>The <code>include.fields</code> and <code>exclude.fields</code> configuration options are mutually exclusive. You must specify only one of the options.</p>
+<p>The <code>include.list</code> and <code>exclude.list</code> configuration options are mutually exclusive. You must specify only one of the options.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The SMT also allows conversion of event metadata fields in the source information block, such as <code>ts_ms</code> to the target timezone. In order to convert the metadata fields, you must include the <code>source</code> prefix in the <code>fieldname</code> of the <code>include.list</code> or <code>exclude.list</code> configuration option.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>If the schema for timestamp fields in the source information block, like <code>ts_ms</code>, is currently set to <code>INT64</code>, which is not a timestamp type, future releases aim to support the conversion of such fields by introducing compatibility for a timestamp schema.</p>
 </div>
 </td>
 </tr>
@@ -429,7 +425,7 @@ Providing a fixed UTC offset is useful when converting timestamp fields to a spe
 <div class="sect1">
 <h2 id="basic-example-timezone-converter"><a class="anchor" href="#basic-example-timezone-converter"></a>Example: Basic configuration</h2>
 <div class="sectionbody">
-<div class="paragraph">
+<div id="timezone-converter-usage" class="paragraph">
 <p>Configure the <code>TimezoneConverter</code> SMT in the Kafka Connect configuration for a connector to convert the time-based fields in an event record to a target timezone.</p>
 </div>
 <div class="paragraph">
@@ -445,7 +441,10 @@ transforms.convertTimezone.converted.timezone=Pacific/Easter</code></pre>
 <div class="sect2">
 <h3 id="_effect_of_applying_the_timezoneconverter_smt"><a class="anchor" href="#_effect_of_applying_the_timezoneconverter_smt"></a>Effect of applying the <code>TimezoneConverter</code> SMT</h3>
 <div class="paragraph">
-<p>The following examples show the timestamp fields in an event record before and after applying the <code>TimezoneConverter</code> transformation.</p>
+<p>The following examples show how the <code>TimezoneConverter</code> transformation modifies the timestamp fields in an event record.
+The first example shows a Debezium event record that is not processed by the transformation; the record retains its original timestamp values.
+The next example shows the same event record after the transformation is applied.
+Per the configuration specified in <a href="#basic-example-timezone-converter">the basic configuration example</a>, the SMT converts the original UTC values of timestamp fields in the source message to <code>Pacific/Easter</code> timezone values.</p>
 </div>
 <div class="exampleblock">
 <div class="title">Example 1. Event record value before processing by the <code>TimezoneConverter</code> transformation</div>
@@ -465,10 +464,12 @@ transforms.convertTimezone.converted.timezone=Pacific/Easter</code></pre>
             "created_at": "2011-01-11T16:40:30.123456789+00:00"
         },
         "source": {
-            "version": "2.4.0.Aplha2",
+            "version": "2.7.0.Alpha2",
             "connector": "postgresql",
             "name": "PostgreSQL_server",
             "ts_ms": 1559033904863,
+            "ts_us": 1559033904863000,
+            "ts_ns": 1559033904863000000,
             "snapshot": true,
             "db": "postgres",
             "sequence": "[\"24023119\",\"24023128\"]",
@@ -479,7 +480,9 @@ transforms.convertTimezone.converted.timezone=Pacific/Easter</code></pre>
             "xmin": null
         },
         "op": "c",
-        "ts_ms": 1559033904863
+        "ts_ms": 1559033904863,
+        "ts_us": 1559033904863875,
+        "ts_ns": 1559033904863875124
     }</code></pre>
 </div>
 </div>
@@ -504,10 +507,12 @@ The SMT also adds an <code>event_timestamp</code> field.</p>
             "created_at": "2011-01-11T11:40:30.123456789-05:00"
         },
         "source": {
-            "version": "2.4.0.Aplha2",
+            "version": "2.7.0.Alpha2",
             "connector": "postgresql",
             "name": "PostgreSQL_server",
             "ts_ms": 1559033904863,
+            "ts_us": 1559033904863752,
+            "ts_ns": 1559033904863752000,
             "snapshot": true,
             "db": "postgres",
             "sequence": "[\"24023119\",\"24023128\"]",
@@ -520,6 +525,8 @@ The SMT also adds an <code>event_timestamp</code> field.</p>
         },
         "op": "c",
         "ts_ms": 1559033904863,
+        "ts_us": 1559033904863971,
+        "ts_ns": 1559033904863971541,
         "event_timestamp": 1626102708861
     }</code></pre>
 </div>
@@ -534,7 +541,7 @@ The SMT also adds an <code>event_timestamp</code> field.</p>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Instead of converting all timestamp fields in an event record, you can configure the SMT to convert specific fields only.
-The following example shows how you might use the <code>include.fields</code> option in the SMT configuration to convert only the <code>created_at</code>, and <code>updated_at</code> timestamp fields in an event record.
+The following example shows how you might use the <code>include.list</code> option in the SMT configuration to convert only the <code>created_at</code>, and <code>updated_at</code> timestamp fields in an event record.
 The following configuration uses a fixed offset, rather than a geographic timezone designator, to convert the time from UTC to <code>+05:30</code>.</p>
 </div>
 <div class="listingblock">
@@ -542,19 +549,19 @@ The following configuration uses a fixed offset, rather than a geographic timezo
 <pre class="highlightjs highlight"><code class="language-none hljs">transforms=convertTimezone
 transforms.convertTimezone.type=io.debezium.transforms.TimezoneConverter
 transforms.convertTimezone.converted.timezone=+05:30
-transforms.convertTimezone.include.fields=source:customers:created_at,customers:updated_at</code></pre>
+transforms.convertTimezone.include.list=source:customers:created_at,customers:updated_at</code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p>In some cases, you might want to exclude specific timestamp fields from timezone conversion.
-For example, to exclude the <code>updated_at</code> timestamp field in an event record from timezone conversion, use the <code>exclude.fields</code> configuration option as in the following example:</p>
+For example, to exclude the <code>updated_at</code> timestamp field in an event record from timezone conversion, use the <code>exclude.list</code> configuration option as in the following example:</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-none hljs">transforms=convertTimezone
 transforms.convertTimezone.type=io.debezium.transforms.TimezoneConverter
 transforms.convertTimezone.converted.timezone=+05:30
-transforms.convertTimezone.exclude.fields=source:customers:updated_at</code></pre>
+transforms.convertTimezone.exclude.list=source:customers:updated_at</code></pre>
 </div>
 </div>
 </div>
@@ -605,7 +612,7 @@ The target timezone can be specified as a geographic timezone, such as, <code>Am
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="timezone-converter-include-fields"></a><a href="#timezone-converter-include-fields"><code>include.fields</code></a></p>
+<p><a id="timezone-converter-include-list"></a><a href="#timezone-converter-include-list"><code>include.list</code></a></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>A comma-separated list of rules that specify the fields that the SMT includes for timezone conversion.
@@ -621,7 +628,7 @@ The SMT converts all time-based fields in the matched table.</p>
 <dt class="hdlist1"><code>source:&lt;tablename&gt;:&lt;fieldname&gt;</code> </dt>
 <dd>
 <p>Matches Debezium change events with source information blocks that have the specified table name.
-The SMT converts only fields in the specified table that have the specified field name.</p>
+The SMT converts only fields in the specified table that have the specified field name. <code>fieldname</code> can be prefixed with <code>before</code>, <code>after</code>, or <code>source</code> to include the appropriate field in the event record. If no prefix is specified, both <code>before</code> and <code>after</code> fields are converted.</p>
 </dd>
 <dt class="hdlist1"><code>topic:&lt;topicname&gt;</code> </dt>
 <dd>
@@ -629,12 +636,12 @@ The SMT converts only fields in the specified table that have the specified fiel
 </dd>
 <dt class="hdlist1"><code>topic:&lt;topicname&gt;:&lt;fieldname&gt;</code> </dt>
 <dd>
-<p>Matches events from the specified topic name, and converts values for the specified fields only.</p>
+<p>Matches events from the specified topic name, and converts values for the specified fields only. <code>fieldname</code> can be prefixed with <code>before</code>, <code>after</code>, or <code>source</code> to include the appropriate field in the event record. If no prefix is specified, both <code>before</code> and <code>after</code> fields are converted.</p>
 </dd>
 <dt class="hdlist1"><code>&lt;matchname&gt;:&lt;fieldname&gt;</code> </dt>
 <dd>
 <p>Applies a heuristic matching algorithm to match against the table name of the source information block, if present; otherwise, matches against the topic name.
-The SMT converts values for the specified field name only.</p>
+The SMT converts values for the specified field name only. <code>fieldname</code> can be prefixed with <code>before</code>, <code>after</code>, or <code>source</code> to include the appropriate field in the event record. If no prefix is specified, both <code>before</code> and <code>after</code> fields are converted.</p>
 </dd>
 </dl>
 </div></div></td>
@@ -647,7 +654,7 @@ The SMT converts values for the specified field name only.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a id="timezone-converter-exclude-fields"></a><a href="#timezone-converter-exclude-fields"><code>exclude.fields</code></a></p>
+<p><a id="timezone-converter-exclude-list"></a><a href="#timezone-converter-exclude-list"><code>exclude.list</code></a></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>A comma-separated list of rules that specify the fields to exclude from timezone conversion.
@@ -663,7 +670,7 @@ The SMT excludes all time-based fields in the matched table from conversion.</p>
 <dt class="hdlist1"><code>source:&lt;tablename&gt;:&lt;fieldname&gt;</code> </dt>
 <dd>
 <p>Matches Debezium change events with source information blocks that have the specified table name.
-The SMT excludes from conversion fields in the specified table that match the specified field name.</p>
+The SMT excludes from conversion fields in the specified table that match the specified field name. <code>fieldname</code> can be prefixed with <code>before</code>, <code>after</code>, or <code>source</code> to exclude the appropriate field in the event record. If no prefix is specified, both <code>before</code> and <code>after</code> fields are excluded from conversion.</p>
 </dd>
 <dt class="hdlist1"><code>topic:&lt;topicname&gt;</code> </dt>
 <dd>
@@ -671,12 +678,12 @@ The SMT excludes from conversion fields in the specified table that match the sp
 </dd>
 <dt class="hdlist1"><code>topic:&lt;topicname&gt;:&lt;fieldname&gt;</code> </dt>
 <dd>
-<p>Matches events from the specified topic name, and excludes from conversion any fields in the topic that have the specified name.</p>
+<p>Matches events from the specified topic name, and excludes from conversion any fields in the topic that have the specified name. <code>fieldname</code> can be prefixed with <code>before</code>, <code>after</code>, or <code>source</code> to exclude the appropriate field in the event record. If no prefix is specified, both <code>before</code> and <code>after</code> fields are excluded from conversion.</p>
 </dd>
 <dt class="hdlist1"><code>&lt;matchname&gt;:&lt;fieldname&gt;</code> </dt>
 <dd>
 <p>Applies a heuristic matching algorithm to match against the table name of the source information block, if present; otherwise, matches against the topic name.
-The SMT excludes from conversion only fields that have the specified name.</p>
+The SMT excludes from conversion only fields that have the specified name. <code>fieldname</code> can be prefixed with <code>before</code>, <code>after</code>, or <code>source</code> to exclude the appropriate field in the event record. If no prefix is specified, both <code>before</code> and <code>after</code> fields are excluded from conversion.</p>
 </dd>
 </dl>
 </div></div></td>
@@ -699,7 +706,7 @@ The SMT excludes from conversion only fields that have the specified name.</p>
 
 <div id="toc-rightbar"></div>    <footer class="footer">
         <div class="wrapper">
-            <div class="copyright">Copyright &copy; 2023 Debezium Community (Rev: <span class="truncated"><a href="https://github.com/debezium/debezium/commit/78c44c937c105375a5849e9d4e4b6d1848f48044">78c44c93</a></span>)
+            <div class="copyright">Copyright &copy; 2024 Debezium Community (Rev: <span class="truncated"><a href="https://github.com/debezium/debezium/commit/bfa664189cc3766838b1bf1874a0668d91a72a27">bfa66418</a></span>)
             
         </div>
     </footer>

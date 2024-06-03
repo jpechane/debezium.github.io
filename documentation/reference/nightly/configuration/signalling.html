@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Sending signals to a Debezium connector :: Debezium Documentation</title>
     <link rel="canonical" href="https://debezium.io/documentation/reference/stable/configuration/signalling.html">
-    <meta name="generator" content="Antora 3.0.0-alpha.9">
+    <meta name="generator" content="Antora 3.1.7">
 <link rel="stylesheet" href="../../debezium-antora/css/site.css">
 <link rel="stylesheet" href="../../debezium-antora/css/debezium-antora.css">
 <link rel="stylesheet" href="../../debezium-antora/css/highlightjs-dark.css">
@@ -127,7 +127,10 @@
     <a class="nav-link" href="../connectors/spanner.html">Spanner</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../connectors/jdbc.html">Jdbc</a>
+    <a class="nav-link" href="../connectors/jdbc.html">JDBC</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../connectors/informix.html">Informix</a>
   </li>
 </ul>
   </li>
@@ -169,9 +172,6 @@
     <a class="nav-link" href="../transformations/applying-transformations-selectively.html">Using SMT Predicates to Selectively Apply Transformations</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../transformations/compute-partition.html">Compute Partition [Deprecated]</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../transformations/partition-routing.html">Partition Routing</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -179,6 +179,24 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../transformations/timezone-converter.html">Timezone Converter</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../transformations/timescaledb.html">TimescaleDB Integration</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../transformations/convert-cloudevent-to-saveable-form.html">Convert CloudEvents to Saveable Form</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Post Processors</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../post-processors/index.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../post-processors/reselect-columns.html">Reselect Columns</a>
   </li>
 </ul>
   </li>
@@ -208,7 +226,7 @@
     <a class="nav-link" href="../integrations/cloudevents.html">CloudEvents</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../integrations/tracing.html">OpenTracing</a>
+    <a class="nav-link" href="../integrations/tracing.html">OpenTelemetry</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../integrations/testcontainers.html">Integration Testing with Testcontainers</a>
@@ -235,9 +253,6 @@
     <a class="nav-link" href="../operations/openshift.html">Running on Openshift</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../operations/embedded.html">Embedding Debezium</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../operations/debezium-ui.html">Debezium UI</a>
   </li>
 </ul>
@@ -260,6 +275,15 @@
           <a href="/documentation/reference/nightly/index.html">nightly</a>
         </li>
         <li class="version">
+          <a href="/documentation/reference/2.6/index.html">2.6</a>
+        </li>
+        <li class="version">
+          <a href="/documentation/reference/2.7/index.html">2.7</a>
+        </li>
+        <li class="version">
+          <a href="/documentation/reference/2.5/index.html">2.5</a>
+        </li>
+        <li class="version">
           <a href="/documentation/reference/2.4/index.html">2.4</a>
         </li>
         <li class="version">
@@ -273,42 +297,6 @@
         </li>
         <li class="version">
           <a href="/documentation/reference/2.0/index.html">2.0</a>
-        </li>
-        <li class="version">
-          <a href="/documentation/reference/1.9/index.html">1.9</a>
-        </li>
-        <li class="version">
-          <a href="/documentation/reference/1.8/index.html">1.8</a>
-        </li>
-        <li class="version">
-          <a href="/documentation/reference/1.7/index.html">1.7</a>
-        </li>
-        <li class="version">
-          <a href="/documentation/reference/1.6/index.html">1.6</a>
-        </li>
-        <li class="version">
-          <a href="/documentation/reference/1.5/index.html">1.5</a>
-        </li>
-        <li class="version">
-          <a href="/documentation/reference/1.4/index.html">1.4</a>
-        </li>
-        <li class="version">
-          <a href="/documentation/reference/1.3/index.html">1.3</a>
-        </li>
-        <li class="version">
-          <a href="/documentation/reference/1.2/index.html">1.2</a>
-        </li>
-        <li class="version">
-          <a href="/documentation/reference/1.1/index.html">1.1</a>
-        </li>
-        <li class="version">
-          <a href="/documentation/reference/1.0/index.html">1.0</a>
-        </li>
-        <li class="version">
-          <a href="/documentation/reference/0.10/index.html">0.10</a>
-        </li>
-        <li class="version">
-          <a href="/documentation/reference/0.9/index.html">0.9</a>
         </li>
       </ul>
     </li>
@@ -334,23 +322,14 @@
         <button class="version-menu-toggle versions-menu-current" title="Show other versions of page">nightly</button>
         <div class="version-menu">
                 <a class="version is-current" href="/documentation/reference/nightly/index.html">nightly</a>
+                <a class="version" href="/documentation/reference/2.6/index.html">2.6</a>
+                <a class="version" href="/documentation/reference/2.7/index.html">2.7</a>
+                <a class="version" href="/documentation/reference/2.5/index.html">2.5</a>
                 <a class="version" href="/documentation/reference/2.4/index.html">2.4</a>
                 <a class="version" href="/documentation/reference/2.3/index.html">2.3</a>
                 <a class="version" href="/documentation/reference/2.2/index.html">2.2</a>
                 <a class="version" href="/documentation/reference/2.1/index.html">2.1</a>
                 <a class="version" href="/documentation/reference/2.0/index.html">2.0</a>
-                <a class="version" href="/documentation/reference/1.9/index.html">1.9</a>
-                <a class="version" href="/documentation/reference/1.8/index.html">1.8</a>
-                <a class="version" href="/documentation/reference/1.7/index.html">1.7</a>
-                <a class="version" href="/documentation/reference/1.6/index.html">1.6</a>
-                <a class="version" href="/documentation/reference/1.5/index.html">1.5</a>
-                <a class="version is-missing" href="/documentation/reference/1.4/index.html">1.4</a>
-                <a class="version is-missing" href="/documentation/reference/1.3/index.html">1.3</a>
-                <a class="version is-missing" href="/documentation/reference/1.2/index.html">1.2</a>
-                <a class="version is-missing" href="/documentation/reference/1.1/index.html">1.1</a>
-                <a class="version is-missing" href="/documentation/reference/1.0/index.html">1.0</a>
-                <a class="version is-missing" href="/documentation/reference/0.10/index.html">0.10</a>
-                <a class="version is-missing" href="/documentation/reference/0.9/index.html">0.9</a>
         </div>
         |
     </div>
@@ -441,12 +420,10 @@ The signaling data collection, which you create on the source database, is desig
 </dd>
 <dt class="hdlist1">Custom</dt>
 <dd>
-<p>You submit signals to a <a href="#debezium-custom-signaling-channel">custom channel</a> that you implement.</p>
+<p>You submit signals to a <a href="#debezium-custom-signaling-channel">custom channel</a> that you implement.
+When Debezium detects that a new <a href="#debezium-signaling-example-of-a-logging-record">logging record</a> or <a href="#debezium-signaling-example-of-an-ad-hoc-blocking-snapshot-signal-record">ad hoc snapshot record</a> is added to the channel, it reads the signal, and initiates the requested operation.</p>
 </dd>
 </dl>
-</div>
-<div class="paragraph">
-<p>When Debezium detects that a new <a href="#debezium-signaling-example-of-a-logging-record">logging record</a> or <a href="#debezium-signaling-example-of-an-ad-hoc-blocking-snapshot-signal-record">ad hoc snapshot record</a> is added to the channel, it reads the signal, and initiates the requested operation.</p>
 </div>
 <div class="paragraph">
 <p>Signaling is available for use with the following Debezium connectors:</p>
@@ -457,7 +434,7 @@ The signaling data collection, which you create on the source database, is desig
 <p>Db2</p>
 </li>
 <li>
-<p>MongoDB (Technology Preview)</p>
+<p>MongoDB</p>
 </li>
 <li>
 <p>MySQL</p>
@@ -672,22 +649,22 @@ After you enable the signaling channel, a Kafka consumer is created to consume s
 <div class="title">Additional configuration available for the consumer</div>
 <ul>
 <li>
-<p><a href="../connectors/db2.html#debezium-db2-connector-kafka-signals-configuration-properties" class="page">Db2 connector Kafka signal configuration properties</a></p>
+<p><a href="../connectors/db2.html#debezium-db2-connector-kafka-signals-configuration-properties" class="xref page">Db2 connector Kafka signal configuration properties</a></p>
 </li>
 <li>
-<p><a href="../connectors/mongodb.html#debezium-mongodb-connector-kafka-signals-configuration-properties" class="page">MongoDB connector Kafka signal configuration properties</a></p>
+<p><a href="../connectors/mongodb.html#debezium-mongodb-connector-kafka-signals-configuration-properties" class="xref page">MongoDB connector Kafka signal configuration properties</a></p>
 </li>
 <li>
-<p><a href="../connectors/mysql.html#debezium-mysql-connector-kafka-signals-configuration-properties" class="page">MySQL connector Kafka signal configuration properties</a></p>
+<p><a href="../connectors/mysql.html#debezium-mysql-connector-kafka-signals-configuration-properties" class="xref page">MySQL connector Kafka signal configuration properties</a></p>
 </li>
 <li>
-<p><a href="../connectors/oracle.html#debezium-oracle-connector-kafka-signals-configuration-properties" class="page">Oracle connector Kafka signal configuration properties</a></p>
+<p><a href="../connectors/oracle.html#debezium-oracle-connector-kafka-signals-configuration-properties" class="xref page">Oracle connector Kafka signal configuration properties</a></p>
 </li>
 <li>
-<p><a href="../connectors/postgresql.html#debezium-postgresql-connector-kafka-signals-configuration-properties" class="page">PostgreSQL connector Kafka signal configuration properties</a></p>
+<p><a href="../connectors/postgresql.html#debezium-postgresql-connector-kafka-signals-configuration-properties" class="xref page">PostgreSQL connector Kafka signal configuration properties</a></p>
 </li>
 <li>
-<p><a href="../connectors/sqlserver.html#debezium-sqlserver-connector-kafka-signals-configuration-properties" class="page">SQL Server connector Kafka signal configuration properties</a></p>
+<p><a href="../connectors/sqlserver.html#debezium-sqlserver-connector-kafka-signals-configuration-properties" class="xref page">SQL Server connector Kafka signal configuration properties</a></p>
 </li>
 </ul>
 </div>
@@ -701,8 +678,8 @@ After you enable the signaling channel, a Kafka consumer is created to consume s
 <div class="paragraph">
 <p>To use Kafka signaling to trigger ad hoc incremental snapshots for most connectors, you must first <a href="#debezium-signaling-enabling-source-signaling-channel">enable a <code>source</code> signaling channel</a> in the connector configuration.
 The source channel implements a watermarking mechanism to deduplicate events that might be captured by an incremental snapshot and then captured again after streaming resumes.
-Enabling the source channel is not required when using a signaling channel to trigger an incremental snapshot of a read-only MySQL database that has <a href="#link-mysql-connector}.adoc#enable-mysql-gtids" class="page unresolved">GTIDs enabled</a>.
-For more information, see <a href="../connectors/mysql.html#mysql-read-only-incremental-snapshots" class="page">MySQL read only incremental snapshot</a></p>
+Enabling the source channel is not required when using a signaling channel to trigger an incremental snapshot of a read-only MySQL database that has <a href="../connectors/mysql.html#enable-mysql-gtids" class="xref page">GTIDs enabled</a>.
+For more information, see <a href="../connectors/mysql.html#mysql-read-only-incremental-snapshots" class="xref page">MySQL read only incremental snapshot</a></p>
 </div>
 </td>
 </tr>
@@ -826,7 +803,7 @@ Value = `{"type":"execute-snapshot","data": {"data-collections": ["schema1.table
 <h2 id="debezium-signaling-enabling-jmx-signaling-channel"><a class="anchor" href="#debezium-signaling-enabling-jmx-signaling-channel"></a>Enabling a JMX signaling channel</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You can enable the JMX signaling by adding <code>jmx</code> to the <code>signal.enabled.channels</code> property in the connector configuration, and then <a href="../operations/monitoring.html#monitoring-debezium" class="page">enabling the JMX MBean Server</a> to expose the signaling bean.</p>
+<p>You can enable the JMX signaling by adding <code>jmx</code> to the <code>signal.enabled.channels</code> property in the connector configuration, and then <a href="../operations/monitoring.html#monitoring-debezium" class="xref page">enabling the JMX MBean Server</a> to expose the signaling bean.</p>
 </div>
 <div class="sect2">
 <h3 id="debezium-signaling-using-a-jmx-signaling-channel-to-sends-signals"><a class="anchor" href="#debezium-signaling-using-a-jmx-signaling-channel-to-sends-signals"></a>Sending JMX signals</h3>
@@ -1272,22 +1249,22 @@ You can initiate ad hoc snapshots at any time.</p>
 <div class="title">Additional resources</div>
 <ul>
 <li>
-<p><a href="../connectors/db2.html#db2-ad-hoc-snapshots" class="page">Db2 connector ad hoc snapshots</a></p>
+<p><a href="../connectors/db2.html#debezium-db2-incremental-snapshots" class="xref page">Db2 connector incremental snapshots</a></p>
 </li>
 <li>
-<p><a href="../connectors/mongodb.html#mongodb-ad-hoc-snapshots" class="page">MongoDB connector ad hoc snapshots</a></p>
+<p><a href="../connectors/mongodb.html#debezium-mongodb-incremental-snapshots" class="xref page">MongoDB connector incremental snapshots</a></p>
 </li>
 <li>
-<p><a href="../connectors/mysql.html#mysql-ad-hoc-snapshots" class="page">MySQL connector ad hoc snapshots</a></p>
+<p><a href="../connectors/mysql.html#debezium-mysql-incremental-snapshots" class="xref page">MySQL connector incremental snapshots</a></p>
 </li>
 <li>
-<p><a href="../connectors/oracle.html#oracle-ad-hoc-snapshots" class="page">Oracle connector ad hoc snapshots</a></p>
+<p><a href="../connectors/oracle.html#debezium-oracle-incremental-snapshots" class="xref page">Oracle connector incremental snapshots</a></p>
 </li>
 <li>
-<p><a href="../connectors/postgresql.html#postgresql-ad-hoc-snapshots" class="page">PostgreSQL connector ad hoc snapshots</a></p>
+<p><a href="../connectors/postgresql.html#debezium-postgresql-incremental-snapshots" class="xref page">PostgreSQL connector incremental snapshots</a></p>
 </li>
 <li>
-<p><a href="../connectors/sqlserver.html#sqlserver-ad-hoc-snapshots" class="page">SQL Server connector ad hoc snapshots</a></p>
+<p><a href="../connectors/sqlserver.html#debezium-sqlserver-incremental-snapshots" class="xref page">SQL Server connector incremental snapshots</a></p>
 </li>
 </ul>
 </div>
@@ -1511,22 +1488,22 @@ The <code>data</code> field is ignored.</p>
 <div class="title">Additional resources</div>
 <ul>
 <li>
-<p><a href="../connectors/db2.html#db2-incremental-snapshots" class="page">Db2 connector incremental snapshots</a></p>
+<p><a href="../connectors/db2.html#debezium-db2-incremental-snapshots" class="xref page">Db2 connector incremental snapshots</a></p>
 </li>
 <li>
-<p><a href="../connectors/mongodb.html#mongodb-incremental-snapshots" class="page">MongoDB connector incremental snapshots</a></p>
+<p><a href="../connectors/mongodb.html#debezium-mongodb-incremental-snapshots" class="xref page">MongoDB connector incremental snapshots</a></p>
 </li>
 <li>
-<p><a href="../connectors/mysql.html#mysql-incremental-snapshots" class="page">MySQL connector incremental snapshots</a></p>
+<p><a href="../connectors/mysql.html#debezium-mysql-incremental-snapshots" class="xref page">MySQL connector incremental snapshots</a></p>
 </li>
 <li>
-<p><a href="../connectors/oracle.html#oracle-incremental-snapshots" class="page">Oracle connector incremental snapshots</a></p>
+<p><a href="../connectors/oracle.html#debezium-oracle-incremental-snapshots" class="xref page">Oracle connector incremental snapshots</a></p>
 </li>
 <li>
-<p><a href="../connectors/postgresql.html#postgresql-incremental-snapshots" class="page">PostgreSQL connector incremental snapshots</a></p>
+<p><a href="../connectors/postgresql.html#debezium-postgresql-incremental-snapshots" class="xref page">PostgreSQL connector incremental snapshots</a></p>
 </li>
 <li>
-<p><a href="../connectors/sqlserver.html#sqlserver-incremental-snapshots" class="page">SQL Server connector incremental snapshots</a></p>
+<p><a href="../connectors/sqlserver.html#debezium-sqlserver-incremental-snapshots" class="xref page">SQL Server connector incremental snapshots</a></p>
 </li>
 </ul>
 </div>
@@ -1628,22 +1605,22 @@ You can initiate ad hoc blocking snapshots at any time.</p>
 <div class="title">Additional resources</div>
 <ul>
 <li>
-<p><a href="../connectors/db2.html#db2-blocking-snapshots" class="page">Db2 connector ad hoc blocking snapshots</a></p>
+<p><a href="../connectors/db2.html#db2-blocking-snapshots" class="xref page">Db2 connector ad hoc blocking snapshots</a></p>
 </li>
 <li>
-<p><a href="../connectors/mongodb.html#mongodb-blocking-snapshots" class="page">MongoDB connector ad hoc blocking snapshots</a></p>
+<p><a href="../connectors/mongodb.html#mongodb-blocking-snapshots" class="xref page">MongoDB connector ad hoc blocking snapshots</a></p>
 </li>
 <li>
-<p><a href="../connectors/mysql.html#mysql-blocking-snapshots" class="page">MySQL connector ad hoc blocking snapshots</a></p>
+<p><a href="../connectors/mysql.html#mysql-blocking-snapshots" class="xref page">MySQL connector ad hoc blocking snapshots</a></p>
 </li>
 <li>
-<p><a href="../connectors/oracle.html#oracle-blocking-snapshots" class="page">Oracle connector ad hoc blocking snapshots</a></p>
+<p><a href="../connectors/oracle.html#oracle-blocking-snapshots" class="xref page">Oracle connector ad hoc blocking snapshots</a></p>
 </li>
 <li>
-<p><a href="../connectors/postgresql.html#postgresql-blocking-snapshots" class="page">PostgreSQL connector ad hoc blocking snapshots</a></p>
+<p><a href="../connectors/postgresql.html#postgresql-blocking-snapshots" class="xref page">PostgreSQL connector ad hoc blocking snapshots</a></p>
 </li>
 <li>
-<p><a href="../connectors/sqlserver.html#sqlserver-blocking-snapshots" class="page">SQL Server connector ad hoc blocking snapshots</a></p>
+<p><a href="../connectors/sqlserver.html#sqlserver-blocking-snapshots" class="xref page">SQL Server connector ad hoc blocking snapshots</a></p>
 </li>
 </ul>
 </div>
@@ -1768,7 +1745,7 @@ To use a custom action with multiple connectors, you must place a copy of the cu
 
 <div id="toc-rightbar"></div>    <footer class="footer">
         <div class="wrapper">
-            <div class="copyright">Copyright &copy; 2023 Debezium Community (Rev: <span class="truncated"><a href="https://github.com/debezium/debezium/commit/78c44c937c105375a5849e9d4e4b6d1848f48044">78c44c93</a></span>)
+            <div class="copyright">Copyright &copy; 2024 Debezium Community (Rev: <span class="truncated"><a href="https://github.com/debezium/debezium/commit/bfa664189cc3766838b1bf1874a0668d91a72a27">bfa66418</a></span>)
             
         </div>
     </footer>

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Debezium connector for Vitess :: Debezium Documentation</title>
     <link rel="canonical" href="https://debezium.io/documentation/reference/stable/connectors/vitess.html">
-    <meta name="generator" content="Antora 3.0.0-alpha.9">
+    <meta name="generator" content="Antora 3.1.7">
 <link rel="stylesheet" href="../../debezium-antora/css/site.css">
 <link rel="stylesheet" href="../../debezium-antora/css/debezium-antora.css">
 <link rel="stylesheet" href="../../debezium-antora/css/highlightjs-dark.css">
@@ -127,7 +127,10 @@
     <a class="nav-link" href="spanner.html">Spanner</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="jdbc.html">Jdbc</a>
+    <a class="nav-link" href="jdbc.html">JDBC</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="informix.html">Informix</a>
   </li>
 </ul>
   </li>
@@ -169,9 +172,6 @@
     <a class="nav-link" href="../transformations/applying-transformations-selectively.html">Using SMT Predicates to Selectively Apply Transformations</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../transformations/compute-partition.html">Compute Partition [Deprecated]</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../transformations/partition-routing.html">Partition Routing</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -179,6 +179,24 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../transformations/timezone-converter.html">Timezone Converter</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../transformations/timescaledb.html">TimescaleDB Integration</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../transformations/convert-cloudevent-to-saveable-form.html">Convert CloudEvents to Saveable Form</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Post Processors</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../post-processors/index.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../post-processors/reselect-columns.html">Reselect Columns</a>
   </li>
 </ul>
   </li>
@@ -208,7 +226,7 @@
     <a class="nav-link" href="../integrations/cloudevents.html">CloudEvents</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../integrations/tracing.html">OpenTracing</a>
+    <a class="nav-link" href="../integrations/tracing.html">OpenTelemetry</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../integrations/testcontainers.html">Integration Testing with Testcontainers</a>
@@ -235,9 +253,6 @@
     <a class="nav-link" href="../operations/openshift.html">Running on Openshift</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../operations/embedded.html">Embedding Debezium</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../operations/debezium-ui.html">Debezium UI</a>
   </li>
 </ul>
@@ -260,6 +275,15 @@
           <a href="/documentation/reference/nightly/index.html">nightly</a>
         </li>
         <li class="version">
+          <a href="/documentation/reference/2.6/index.html">2.6</a>
+        </li>
+        <li class="version">
+          <a href="/documentation/reference/2.7/index.html">2.7</a>
+        </li>
+        <li class="version">
+          <a href="/documentation/reference/2.5/index.html">2.5</a>
+        </li>
+        <li class="version">
           <a href="/documentation/reference/2.4/index.html">2.4</a>
         </li>
         <li class="version">
@@ -273,42 +297,6 @@
         </li>
         <li class="version">
           <a href="/documentation/reference/2.0/index.html">2.0</a>
-        </li>
-        <li class="version">
-          <a href="/documentation/reference/1.9/index.html">1.9</a>
-        </li>
-        <li class="version">
-          <a href="/documentation/reference/1.8/index.html">1.8</a>
-        </li>
-        <li class="version">
-          <a href="/documentation/reference/1.7/index.html">1.7</a>
-        </li>
-        <li class="version">
-          <a href="/documentation/reference/1.6/index.html">1.6</a>
-        </li>
-        <li class="version">
-          <a href="/documentation/reference/1.5/index.html">1.5</a>
-        </li>
-        <li class="version">
-          <a href="/documentation/reference/1.4/index.html">1.4</a>
-        </li>
-        <li class="version">
-          <a href="/documentation/reference/1.3/index.html">1.3</a>
-        </li>
-        <li class="version">
-          <a href="/documentation/reference/1.2/index.html">1.2</a>
-        </li>
-        <li class="version">
-          <a href="/documentation/reference/1.1/index.html">1.1</a>
-        </li>
-        <li class="version">
-          <a href="/documentation/reference/1.0/index.html">1.0</a>
-        </li>
-        <li class="version">
-          <a href="/documentation/reference/0.10/index.html">0.10</a>
-        </li>
-        <li class="version">
-          <a href="/documentation/reference/0.9/index.html">0.9</a>
         </li>
       </ul>
     </li>
@@ -334,23 +322,14 @@
         <button class="version-menu-toggle versions-menu-current" title="Show other versions of page">nightly</button>
         <div class="version-menu">
                 <a class="version is-current" href="/documentation/reference/nightly/index.html">nightly</a>
+                <a class="version" href="/documentation/reference/2.6/index.html">2.6</a>
+                <a class="version" href="/documentation/reference/2.7/index.html">2.7</a>
+                <a class="version" href="/documentation/reference/2.5/index.html">2.5</a>
                 <a class="version" href="/documentation/reference/2.4/index.html">2.4</a>
                 <a class="version" href="/documentation/reference/2.3/index.html">2.3</a>
                 <a class="version" href="/documentation/reference/2.2/index.html">2.2</a>
                 <a class="version" href="/documentation/reference/2.1/index.html">2.1</a>
                 <a class="version" href="/documentation/reference/2.0/index.html">2.0</a>
-                <a class="version" href="/documentation/reference/1.9/index.html">1.9</a>
-                <a class="version" href="/documentation/reference/1.8/index.html">1.8</a>
-                <a class="version" href="/documentation/reference/1.7/index.html">1.7</a>
-                <a class="version" href="/documentation/reference/1.6/index.html">1.6</a>
-                <a class="version" href="/documentation/reference/1.5/index.html">1.5</a>
-                <a class="version" href="/documentation/reference/1.4/index.html">1.4</a>
-                <a class="version is-missing" href="/documentation/reference/1.3/index.html">1.3</a>
-                <a class="version is-missing" href="/documentation/reference/1.2/index.html">1.2</a>
-                <a class="version is-missing" href="/documentation/reference/1.1/index.html">1.1</a>
-                <a class="version is-missing" href="/documentation/reference/1.0/index.html">1.0</a>
-                <a class="version is-missing" href="/documentation/reference/0.10/index.html">0.10</a>
-                <a class="version is-missing" href="/documentation/reference/0.9/index.html">0.9</a>
         </div>
         |
     </div>
@@ -379,6 +358,7 @@
 <li><a href="#vitess-streaming-changes">Streaming changes</a></li>
 <li><a href="#vitess-topic-names">Topics names</a></li>
 <li><a href="#vitess-transaction-metadata">Transaction metadata</a></li>
+<li><a href="#vitess-ordered-transaction-metadata">Ordered Transaction Metadata</a></li>
 </ul>
 </li>
 <li><a href="#vitess-events">Data change events</a>
@@ -394,6 +374,7 @@
 <li><a href="#vitess-data-types">Data type mappings</a>
 <ul class="sectlevel2">
 <li><a href="#vitess-basic-types">Basic types</a></li>
+<li><a href="#vitess-temporal-types">Temporal types</a></li>
 </ul>
 </li>
 <li><a href="#setting-up-vitess">Seting up Vitess</a>
@@ -407,6 +388,7 @@
 <li><a href="#vitess-example-configuration-offset-storage-per-task">Connector configuration example for offset-storage-per-task mode</a></li>
 <li><a href="#vitess-adding-connector-configuration">Adding connector configuration</a></li>
 <li><a href="#vitess-monitoring">Monitoring</a></li>
+<li><a href="#_customized_mbean_names">Customized MBean names</a></li>
 <li><a href="#vitess-connector-properties">Connector configuration properties</a></li>
 </ul>
 </li>
@@ -599,7 +581,7 @@ Transaction boundary events contain the following fields:</p>
 <dt class="hdlist1"><code>ts_ms</code></dt>
 <dd>
 <p>The time of a transaction boundary event (<code>BEGIN</code> or <code>END</code> event) at the data source.
-If the data source does not provide Debezium with the event time, then the field instead represents the time at which Debezium processes the event.</p>
+If the data source does not provide Debezium with the event time, then the field instead represents the time at which Debezium processes the event. Note:`ts_ms` is in milliseconds, but only has seconds-level precision due to a limitation of MySQL, which can only provide binlog timestamps in seconds.</p>
 </dd>
 <dt class="hdlist1"><code>event_count</code> (for <code>END</code> events)</dt>
 <dd>
@@ -617,7 +599,7 @@ If the data source does not provide Debezium with the event time, then the field
 <pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
   "status": "BEGIN",
   "id": "[{\"keyspace\":\"test_unsharded_keyspace\",\"shard\":\"0\",\"gtid\":\"MySQL56/e03ece6c-4c04-11ec-8e20-0242ac110004:1-37\"}]",
-  "ts_ms": 1486500577125,
+  "ts_ms": 1486500577000,
   "event_count": null,
   "data_collections": null
 }
@@ -625,7 +607,7 @@ If the data source does not provide Debezium with the event time, then the field
 {
   "status": "END",
   "id": "[{\"keyspace\":\"test_unsharded_keyspace\",\"shard\":\"0\",\"gtid\":\"MySQL56/e03ece6c-4c04-11ec-8e20-0242ac110004:1-37\"}]",
-  "ts_ms": 1486500577691,
+  "ts_ms": 1486500577000,
   "event_count": 1,
   "data_collections": [
     {
@@ -674,10 +656,103 @@ This field provides information about every event in the form of a composite of 
   },
   "op": "c",
   "ts_ms": 1637988245467,
+  "ts_us": 1637988245467841,
+  "ts_ns": 1637988245467841698,
   "transaction": {
     "id": "[{\"keyspace\":\"test_unsharded_keyspace\",\"shard\":\"0\",\"gtid\":\"MySQL56/e03ece6c-4c04-11ec-8e20-0242ac110004:1-68\"}]",
     "total_order": 1,
     "data_collection_order": 1
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="vitess-ordered-transaction-metadata"><a class="anchor" href="#vitess-ordered-transaction-metadata"></a>Ordered Transaction Metadata</h3>
+<div class="paragraph">
+<p>You can configure Debezium to include additional metadata in data change event records.
+Such supplemental metadata can assist downstream consumers in processing messages in the correct order when repartitioning, or some other disruption, might otherwise lead to data being consumed out of order.</p>
+</div>
+<div class="paragraph">
+<div class="title">Change Data Enrichment</div>
+<p>To configure the connector to emit enriched data change event records, set the <a href="#vitess-property-transaction-metadata-factory"><code>transaction.metadata.factory</code></a> property.
+When this property is set to <code>VitessOrderedTransactionMetadataFactory</code>, the connector includes a <code>transaction</code> field in the message <code>Envelope</code>.
+The <code>transaction</code> field adds metadata that provides information about the order in which transactions occur.
+The following fields are added to every message:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>transaction_epoch</code></dt>
+<dd>
+<p>A non-decreasing value that represents the epoch that the transaction rank belongs to.</p>
+</dd>
+<dt class="hdlist1"><code>transaction_rank</code></dt>
+<dd>
+<p>A non-decreasing value within an epoch that represents the order of the transaction.</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>A third field is also relevant to event ordering:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>total_order</code></dt>
+<dd>
+<p>Represents the absolute position of an event among all events generated by a transaction.
+This field is included by default in the standard transaction metadata.</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>The following example illustrates how to use these fields to establish event order.</p>
+</div>
+<div class="paragraph">
+<p>Suppose Debezium emits change event records for two events that occur in the same shard and share the same primary key.
+If the Kafka topic where these events are sent is repartitioned, then the consumer order of the two events cannot be trusted.
+If Debezium is configured to provide enriched transaction metadata, applications that consume from the topic can apply the following logic to determine which of the two event to apply (the newer event) and which to discard:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>If the values for <code>transaction_epoch</code> are not equal, return the event with the higher <code>transaction_epoch</code> value. Otherwise, continue.</p>
+</li>
+<li>
+<p>If the values for <code>transaction_rank</code> are not equal, return the event with the higher <code>transaction_rank</code> value. Otherwise, continue.</p>
+</li>
+<li>
+<p>Return the event with a greater <code>total_order</code> value.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>If neither of the two events have a higher <code>total_order</code> value, then the events are part of the same transaction.
+Because the <code>total_order</code> field represents the order of events within a transaction, the event with the greater value is the most recent event.</p>
+</div>
+<div class="paragraph">
+<p>The following example shows a data change event with ordered transaction metadata:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "before": null,
+  "after": {
+    "pk": "2",
+    "aa": "1"
+  },
+  "source": {
+...
+  },
+  "op": "c",
+  "ts_ms": 1637988245467,
+  "ts_us": 1637988245467841,
+  "ts_ns": 1637988245467841698,
+  "transaction": {
+    "id": "[{\"keyspace\":\"test_unsharded_keyspace\",\"shard\":\"0\",\"gtid\":\"MySQL56/e03ece6c-4c04-11ec-8e20-0242ac110004:1-68\"}]",
+    "total_order": 1,
+    "data_collection_order": 1,
+    "transaction_rank": 68,
+    "transaction_epoch": 0
   }
 }</code></pre>
 </div>
@@ -1050,6 +1125,16 @@ It is possible to override the table&#8217;s primary key by setting the <a href=
                         "field": "ts_ms"
                     },
                     {
+                        "type": "int64",
+                        "optional": false,
+                        "field": "ts_us"
+                    },
+                    {
+                        "type": "int64",
+                        "optional": false,
+                        "field": "ts_ns"
+                    },
+                    {
                         "type": "string",
                         "optional": true,
                         "name": "io.debezium.data.Enum",
@@ -1104,6 +1189,16 @@ It is possible to override the table&#8217;s primary key by setting the <a href=
                 "type": "int64",
                 "optional": true,
                 "field": "ts_ms"
+            },
+            {
+                "type": "int64",
+                "optional": true,
+                "field": "ts_us"
+            },
+            {
+                "type": "int64",
+                "optional": true,
+                "field": "ts_ns"
             }
         ],
         "optional": false,
@@ -1118,10 +1213,12 @@ It is possible to override the table&#8217;s primary key by setting the <a href=
             "email": "annek@noanswer.org"
         },
         "source": { <i class="conum" data-value="8"></i><b>(8)</b>
-            "version": "2.4.0.Final",
+            "version": "2.7.0.Alpha2",
             "connector": "vitess",
             "name": "my_sharded_connector",
-            "ts_ms": 1559033904863,
+            "ts_ms": 1559033904000,
+            "ts_us": 1559033904000000,
+            "ts_ns": 1559033904000000000,
             "snapshot": "false",
             "db": "",
             "sequence": null,
@@ -1131,7 +1228,9 @@ It is possible to override the table&#8217;s primary key by setting the <a href=
             "vgtid": "[{\"keyspace\":\"commerce\",\"shard\":\"80-\",\"gtid\":\"MariaDB/0-54610504-47\"},{\"keyspace\":\"commerce\",\"shard\":\"-80\",\"gtid\":\"MariaDB/0-1592148-45\"}]"
         },
         "op": "c", <i class="conum" data-value="9"></i><b>(9)</b>
-        "ts_ms": 1559033904863 <i class="conum" data-value="10"></i><b>(10)</b>
+        "ts_ms": 1559033904863, <i class="conum" data-value="10"></i><b>(10)</b>
+        "ts_us": 1559033904863497, <i class="conum" data-value="10"></i><b>(10)</b>
+        "ts_ns": 1559033904863497147 <i class="conum" data-value="10"></i><b>(10)</b>
     }
 }</code></pre>
 </div>
@@ -1164,7 +1263,7 @@ It is possible to override the table&#8217;s primary key by setting the <a href=
 <br>
 <code>Vitess_server.commerce.customers.Value</code> is the schema for the payload&#8217;s <code>before</code> and <code>after</code> fields. This schema is specific to the <code>customers</code> table.<br>
 <br>
-Names of schemas for <code>before</code> and <code>after</code> fields are of the form <code><em>logicalName</em>.<em>keyspaceName</em>.<em>tableName</em>.Value</code>, which ensures that the schema name is unique in the database. This means that when using the <a href="../configuration/avro.html" class="page">Avro converter</a>, the resulting Avro schema for each table in each logical source has its own evolution and history.</p>
+Names of schemas for <code>before</code> and <code>after</code> fields are of the form <code><em>logicalName</em>.<em>keyspaceName</em>.<em>tableName</em>.Value</code>, which ensures that the schema name is unique in the database. This means that when using the <a href="../configuration/avro.html" class="xref page">Avro converter</a>, the resulting Avro schema for each table in each logical source has its own evolution and history.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -1187,7 +1286,7 @@ Names of schemas for <code>before</code> and <code>after</code> fields are of th
 <td class="tableblock halign-left valign-top"><p class="tableblock">The value&#8217;s actual data. This is the information that the change event is providing.<br>
 <br>
 It may appear that the JSON representations of the events are much larger than the rows they describe. This is because the JSON representation must include the schema and the payload portions of the message.
-However, by using the <a href="../configuration/avro.html" class="page">Avro converter</a>, you can significantly decrease the size of the messages that the connector streams to Kafka topics.</p></td>
+However, by using the <a href="../configuration/avro.html" class="xref page">Avro converter</a>, you can significantly decrease the size of the messages that the connector streams to Kafka topics.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">6</p></td>
@@ -1252,11 +1351,12 @@ However, by using the <a href="../configuration/avro.html" class="page">Avro con
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">10</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ts_ms</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ts_ms</code>, <code>ts_us</code>, <code>ts_ns</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Optional field that displays the time at which the connector processed the event. The time is based on the system clock in the JVM running the Kafka Connect task. <br>
+<p>Optional field that displays the time at which the connector processed the event.
+The time is based on the system clock in the JVM running the Kafka Connect task. <br>
 <br>
-In the <code>source</code> object, <code>ts_ms</code> indicates the time that the change was made in the database. By comparing the value for <code>payload.source.ts_ms</code> with the value for <code>payload.ts_ms</code>, you can determine the lag between the source database update and Debezium.</p>
+In the <code>source</code> object, <code>ts_ms</code> indicates the time that the change was made in the database. By comparing the value for <code>payload.source.ts_ms</code> with the value for <code>payload.ts_ms</code>, you can determine the lag between the source database update and Debezium. Note:`ts_ms` is in milliseconds, but only has seconds-level precision due to a limitation of MySQL, which can only provide binlog timestamps in seconds.</p>
 </div></div></td>
 </tr>
 </tbody>
@@ -1285,10 +1385,12 @@ In the <code>source</code> object, <code>ts_ms</code> indicates the time that th
             "email": "annek@noanswer.org"
         },
         "source": { <i class="conum" data-value="3"></i><b>(3)</b>
-            "version": "2.4.0.Final",
+            "version": "2.7.0.Alpha2",
             "connector": "vitess",
             "name": "my_sharded_connector",
-            "ts_ms": 1559033904863,
+            "ts_ms": 1559033904000,
+            "ts_us": 1559033904000000,
+            "ts_ns": 1559033904000000000,
             "snapshot": "false",
             "db": "",
             "sequence": null,
@@ -1298,7 +1400,9 @@ In the <code>source</code> object, <code>ts_ms</code> indicates the time that th
             "vgtid": "[{\"keyspace\":\"commerce\",\"shard\":\"80-\",\"gtid\":\"MariaDB/0-54610504-47\"},{\"keyspace\":\"commerce\",\"shard\":\"-80\",\"gtid\":\"MariaDB/0-1592148-46\"}]"
         },
         "op": "u", <i class="conum" data-value="4"></i><b>(4)</b>
-        "ts_ms": 1465584025523  <i class="conum" data-value="5"></i><b>(5)</b>
+        "ts_ms": 1465584025523,  <i class="conum" data-value="5"></i><b>(5)</b>
+        "ts_us": 1465584025523763,  <i class="conum" data-value="5"></i><b>(5)</b>
+        "ts_ns": 1465584025523763547  <i class="conum" data-value="5"></i><b>(5)</b>
     }
 }</code></pre>
 </div>
@@ -1366,11 +1470,12 @@ In the <code>source</code> object, <code>ts_ms</code> indicates the time that th
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">5</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ts_ms</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ts_ms</code>, <code>ts_us</code>, <code>ts_ns</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Optional field that displays the time at which the connector processed the event. The time is based on the system clock in the JVM running the Kafka Connect task. <br>
+<p>Optional field that displays the time at which the connector processed the event.
+The time is based on the system clock in the JVM running the Kafka Connect task. <br>
 <br>
-In the <code>source</code> object, <code>ts_ms</code> indicates the time that the change was made in the database. By comparing the value for <code>payload.source.ts_ms</code> with the value for <code>payload.ts_ms</code>, you can determine the lag between the source database update and Debezium.</p>
+In the <code>source</code> object, <code>ts_ms</code> indicates the time that the change was made in the database. By comparing the value for <code>payload.source.ts_ms</code> with the value for <code>payload.ts_ms</code>, you can determine the lag between the source database update and Debezium. Note:`ts_ms` is in milliseconds, but only has seconds-level precision due to a limitation of MySQL, which can only provide binlog timestamps in seconds.</p>
 </div></div></td>
 </tr>
 </tbody>
@@ -1425,10 +1530,12 @@ as a primary key change. For a primary key change, in place of an <code>UPDATE</
         },
         "after": null, <i class="conum" data-value="2"></i><b>(2)</b>
         "source": { <i class="conum" data-value="3"></i><b>(3)</b>
-            "version": "2.4.0.Final",
+            "version": "2.7.0.Alpha2",
             "connector": "vitess",
             "name": "my_sharded_connector",
-            "ts_ms": 1559033904863,
+            "ts_ms": 1559033904000,
+            "ts_us": 1559033904000000,
+            "ts_ns": 1559033904000000000,
             "snapshot": "false",
             "db": "",
             "sequence": null,
@@ -1438,7 +1545,9 @@ as a primary key change. For a primary key change, in place of an <code>UPDATE</
             "vgtid": "[{\"keyspace\":\"commerce\",\"shard\":\"80-\",\"gtid\":\"MariaDB/0-54610504-47\"},{\"keyspace\":\"commerce\",\"shard\":\"-80\",\"gtid\":\"MariaDB/0-1592148-47\"}]"
         },
         "op": "d", <i class="conum" data-value="4"></i><b>(4)</b>
-        "ts_ms": 1465581902461 <i class="conum" data-value="5"></i><b>(5)</b>
+        "ts_ms": 1465581902461, <i class="conum" data-value="5"></i><b>(5)</b>
+        "ts_us": 1465581902461324, <i class="conum" data-value="5"></i><b>(5)</b>
+        "ts_ns": 1465581902461324871 <i class="conum" data-value="5"></i><b>(5)</b>
     }
 }</code></pre>
 </div>
@@ -1506,11 +1615,12 @@ as a primary key change. For a primary key change, in place of an <code>UPDATE</
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">5</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ts_ms</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ts_ms</code>, <code>ts_us</code>, <code>ts_ns</code></p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Optional field that displays the time at which the connector processed the event. The time is based on the system clock in the JVM running the Kafka Connect task. <br>
+<p>Optional field that displays the time at which the connector processed the event.
+The time is based on the system clock in the JVM running the Kafka Connect task. <br>
 <br>
-In the <code>source</code> object, <code>ts_ms</code> indicates the time that the change was made in the database. By comparing the value for <code>payload.source.ts_ms</code> with the value for <code>payload.ts_ms</code>, you can determine the lag between the source database update and Debezium.</p>
+In the <code>source</code> object, <code>ts_ms</code> indicates the time that the change was made in the database. By comparing the value for <code>payload.source.ts_ms</code> with the value for <code>payload.ts_ms</code>, you can determine the lag between the source database update and Debezium. Note:`ts_ms` is in milliseconds, but only has seconds-level precision due to a limitation of MySQL, which can only provide binlog timestamps in seconds.</p>
 </div></div></td>
 </tr>
 </tbody>
@@ -1535,7 +1645,7 @@ In the <code>source</code> object, <code>ts_ms</code> indicates the time that th
 <p>The Vitess connector represents changes to rows with events that are structured like the table in which the row exists. The event contains a field for each column value. How that value is represented in the event depends on the Vitess data type of the column. This section describes these mappings.</p>
 </div>
 <div class="paragraph">
-<p>If the default data type conversions do not meet your needs, you can <a href="../development/converters.html#custom-converters" class="page">create a custom converter</a> for the connector.</p>
+<p>If the default data type conversions do not meet your needs, you can <a href="../development/converters.html#custom-converters" class="xref page">create a custom converter</a> for the connector.</p>
 </div>
 <div class="sect2">
 <h3 id="vitess-basic-types"><a class="anchor" href="#vitess-basic-types"></a>Basic types</h3>
@@ -1861,10 +1971,10 @@ The <code>allowed</code> schema parameter contains the comma-separated list of a
 <p><code>YEAR[(2|4)]</code></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><code>STRING</code></p>
+<p><code>INT32</code></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><em>n/a</em></p>
+<p>io.debezium.time.Year</p>
 </div></div></td>
 </tr>
 <tr>
@@ -1877,18 +1987,6 @@ The <code>allowed</code> schema parameter contains the comma-separated list of a
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><em>n/a</em><br>
 In <code>yyyy-MM-dd HH:mm:ss.SSS</code> format with microsecond precision based on UTC. MySQL allows <code>M</code> to be in the range of <code>0-6</code>.</p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><code>DATETIME[(M)]</code></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><code>STRING</code></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><em>n/a</em><br>
-In <code>yyyy-MM-dd HH:mm:ss.SSS</code> format with microsecond precision. MySQL allows <code>M</code> to be in the range of <code>0-6</code>.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -1933,6 +2031,181 @@ GEOMETRYCOLLECTION</code></p>
 </tbody>
 </table>
 </div>
+<div class="sect2">
+<h3 id="vitess-temporal-types"><a class="anchor" href="#vitess-temporal-types"></a>Temporal types</h3>
+<div class="paragraph">
+<p>Excluding the <code>TIMESTAMP</code> data type, Vitess temporal types depend on the value of the <a href="#vitess-property-time-precision-mode"><code>time.precision.mode</code></a> connector configuration property.</p>
+</div>
+<div class="paragraph">
+<div class="title">Temporal values without time zones</div>
+<p>The <code>DATETIME</code> type represents a local date and time such as "2018-01-13 09:48:27".
+As you can see in the preceding example, this type does not include time zone information.
+Columns of this type are converted into epoch milliseconds or microseconds based on the column’s precision by using UTC.
+The <code>TIMESTAMP</code> type represents a timestamp without time zone information.
+When writing data, MySQL converts the <code>TIMESTAMP</code> type from the time zone of the server or session into UTC format.
+When it reads values, the database converts from UTC format to the current time zone of the server or session.
+For example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>DATETIME</code> with a value of <code>2018-06-20 06:37:03</code> becomes <code>1529476623000</code>.</p>
+</li>
+<li>
+<p><code>TIMESTAMP</code> with a value of <code>2018-06-20 06:37:03</code> becomes <code>2018-06-20T13:37:03Z</code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Such columns are converted into an equivalent <code>io.debezium.time.ZonedTimestamp</code> in UTC, based on the time zone of the server or session.
+By default, Debezium queries the server for the time zone.
+If this fails, you must explicitly specify the timezone by setting the <code>connectionTimeZone</code> option in the JDBC connection string.
+For example, if the database’s time zone (either globally, or as configured for the connector by means of the <code>connectionTimeZone</code> option) is "America/Los_Angeles", the TIMESTAMP value "2018-06-20 06:37:03" is represented by a <code>ZonedTimestamp</code> with the value "2018-06-20T13:37:03Z".</p>
+</div>
+<div class="paragraph">
+<p>The time zone of the JVM that runs Kafka Connect and Debezium does not affect these conversions.</p>
+</div>
+<div class="paragraph">
+<p>For more information about properties that affect temporal values, see the <a href="#vitess-connector-properties">connector configuration properties</a>.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">time.precision.mode=adaptive_time_microseconds(default)</dt>
+<dd>
+<p>The Vitess connector determines the literal type and semantic type based on the column&#8217;s data type definition so that events represent exactly the values in the database.
+All time fields are in microseconds.
+Only positive <code>TIME</code> field values in the range of <code>00:00:00.000000</code> to <code>23:59:59.999999</code> can be captured correctly.</p>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 7. Mappings when <code>time.precision.mode=adaptive_time_microseconds</code></caption>
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 20%;">
+<col style="width: 55%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Vitess type</th>
+<th class="tableblock halign-left valign-top">Literal type</th>
+<th class="tableblock halign-left valign-top">Semantic type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>DATE</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>INT32</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>io.debezium.time.Date</code><br>
+Represents the number of days elapsed since the UNIX epoch.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>TIME[(M)]</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>INT64</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>io.debezium.time.MicroTime</code><br>
+Represents the time value in microseconds and does not include time zone information.
+MySQL allows <code>M</code> to be in the range of <code>0-6</code>.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>DATETIME, DATETIME(0), DATETIME(1), DATETIME(2), DATETIME(3)</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>INT64</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>io.debezium.time.Timestamp</code><br>
+Represents the number of milliseconds elapsed since the UNIX epoch and does not include time zone information.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>DATETIME(4), DATETIME(5), DATETIME(6)</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>INT64</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>io.debezium.time.MicroTimestamp</code><br>
+Represents the number of microseconds elapsed since the UNIX epoch and does not include time zone information.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt class="hdlist1">time.precision.mode=connect</dt>
+<dd>
+<p>The Vitess connector uses defined Kafka Connect logical types.
+This approach is less precise than the default approach, and the events could be less precise if the database column has a <em>fractional second precision</em> value that is greater than <code>3</code>.
+The connector can process values that range from <code>00:00:00.000</code> to <code>23:59:59.999</code>.
+Set <code>time.precision.mode=connect</code> only if you are certain that the <code>TIME</code> values in your tables never exceed the supported ranges.
+The <code>connect</code> setting is expected to be removed in a future version of Debezium.</p>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 8. Mappings when <code>time.precision.mode=connect</code></caption>
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 20%;">
+<col style="width: 55%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Vitess data type</th>
+<th class="tableblock halign-left valign-top">Literal type</th>
+<th class="tableblock halign-left valign-top">Semantic type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>DATE</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>INT32</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>org.apache.kafka.connect.data.Date</code><br>
+Represents the number of days elapsed since the UNIX epoch.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>TIME[(M)]</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>INT64</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>org.apache.kafka.connect.data.Time</code><br>
+Represents the time value in microseconds since midnight and does not include time zone information.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>DATETIME[(M)]</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>INT64</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>org.apache.kafka.connect.data.Timestamp</code><br>
+Represents the number of milliseconds elapsed since the UNIX epoch, and does not include time zone information.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</dd>
+</dl>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -1964,10 +2237,10 @@ GEOMETRYCOLLECTION</code></p>
 <h2 id="vitess-deploying-a-connector"><a class="anchor" href="#vitess-deploying-a-connector"></a>Deployment</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>With <a href="https://zookeeper.apache.org">Zookeeper</a>, <a href="http://kafka.apache.org/">Kafka</a>, and <a href="https://kafka.apache.org/documentation.html#connect">Kafka Connect</a> installed, the remaining tasks to deploy a Debezium Vitess connector are to download the <a href="https://repo1.maven.org/maven2/io/debezium/debezium-connector-vitess/2.4.0.Final/debezium-connector-vitess-2.4.0.Final-plugin.tar.gz">connector&#8217;s plug-in archive</a>, extract the JAR files into your Kafka Connect environment, and add the directory with the JAR files to <a href="https://kafka.apache.org/documentation/#connectconfigs">Kafka Connect&#8217;s <code>plugin.path</code></a>. You then need to restart your Kafka Connect process to pick up the new JAR files.</p>
+<p>With <a href="https://zookeeper.apache.org">Zookeeper</a>, <a href="http://kafka.apache.org/">Kafka</a>, and <a href="https://kafka.apache.org/documentation.html#connect">Kafka Connect</a> installed, the remaining tasks to deploy a Debezium Vitess connector are to download the <a href="https://repo1.maven.org/maven2/io/debezium/debezium-connector-vitess/2.7.0.Alpha2/debezium-connector-vitess-2.7.0.Alpha2-plugin.tar.gz">connector&#8217;s plug-in archive</a>, extract the JAR files into your Kafka Connect environment, and add the directory with the JAR files to <a href="https://kafka.apache.org/documentation/#connectconfigs">Kafka Connect&#8217;s <code>plugin.path</code></a>. You then need to restart your Kafka Connect process to pick up the new JAR files.</p>
 </div>
 <div class="paragraph">
-<p>If you are working with immutable containers, see <a href="https://quay.io/organization/debezium">Debezium&#8217;s Container images</a> for Zookeeper, Kafka and Kafka Connect with the Vitess connector already installed and ready to run. You can also <a href="../operations/openshift.html" class="page">run Debezium on Kubernetes and OpenShift</a>.</p>
+<p>If you are working with immutable containers, see <a href="https://quay.io/organization/debezium">Debezium&#8217;s Container images</a> for Zookeeper, Kafka and Kafka Connect with the Vitess connector already installed and ready to run. You can also <a href="../operations/openshift.html" class="xref page">run Debezium on Kubernetes and OpenShift</a>.</p>
 </div>
 <div class="sect2">
 <h3 id="vitess-example-configuration"><a class="anchor" href="#vitess-example-configuration"></a>Connector configuration example</h3>
@@ -2189,7 +2462,64 @@ GEOMETRYCOLLECTION</code></p>
 </ul>
 </div>
 <div class="paragraph">
-<p><a href="../operations/monitoring.html#monitoring-debezium" class="page">Debezium monitoring documentation</a> provides details for how to expose these metrics by using JMX.</p>
+<p><a href="../operations/monitoring.html#monitoring-debezium" class="xref page">Debezium monitoring documentation</a> provides details for how to expose these metrics by using JMX.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_customized_mbean_names"><a class="anchor" href="#_customized_mbean_names"></a>Customized MBean names</h3>
+<div class="paragraph">
+<p>Debezium connectors expose metrics via the MBean name for the connector.
+These metrics, which are specific to each connector instance, provide data about the behavior of the connector&#8217;s snapshot, streaming, and schema history processes.</p>
+</div>
+<div class="paragraph">
+<p>By default, when you deploy a correctly configured connector, Debezium generates a unique MBean name for each of the different connector metrics.
+To view the metrics for a connector process, you configure your observability stack to monitor its MBean.
+But these default MBean names depend on the connector configuration; configuration changes can result in changes to the MBean names.
+A change to the MBean name breaks the linkage between the connector instance and the MBean, disrupting monitoring activity.
+In this scenario, you must reconfigure the observability stack to use the new MBean name if you want to resume monitoring.</p>
+</div>
+<div class="paragraph">
+<p>To prevent monitoring disruptions that result from MBean name changes, you can configure custom metrics tags.
+You configure custom metrics by adding the <code>custom.metric.tags</code> property to the connector configuration.
+The property accepts key-value pairs in which each key represents a tag for the MBean object name, and the corresponding value represents the value of that tag.
+For example: <code>k1=v1,k2=v2</code>.
+Debezium appends the specified tags to the MBean name of the connector.</p>
+</div>
+<div class="paragraph">
+<p>After you configure the <code>custom.metric.tags</code> property for a connector, you can configure the observability stack to retrieve metrics associated with the specified tags.
+The observability stack then uses the specified tags, rather than the mutable MBean names to uniquely identify connectors.
+Later, if Debezium redefines how it constructs MBean names, or if the <code>topic.prefix</code> in the connector configuration changes, metrics collection is uninterrupted,
+because the metrics scrape task uses the specified tag patterns to identify the connector.</p>
+</div>
+<div class="paragraph">
+<p>A further benefit of using custom tags, is that you can use tags that reflect the architecture of your data pipeline, so that metrics are organized in a way that suits you operational needs.
+For example, you might specify tags with values that declare the type of connector activity, the application context, or the data source, for example, <code>db1-streaming-for-application-abc</code>.
+If you specify multiple key-value pairs, all of the specified pairs are appended to the connector&#8217;s MBean name.</p>
+</div>
+<div class="paragraph">
+<p>The following example illustrates how tags modify the default MBean name.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 1. How custom tags modify the connector MBean name</div>
+<div class="content">
+<div class="paragraph">
+<p>By default, the {connector-name} connector uses the following MBean name for streaming metrics:
+<br></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">debezium.vitess:type=connector-metrics,context=streaming,server=<em>&lt;topic.prefix&gt;</em></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you set the value of <code>custom.metric.tags</code> to <code>database=salesdb-streaming,table=inventory</code>, Debezium generates the following custom MBean name:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">debezium.vitess:type=connector-metrics,context=streaming,server=<em>&lt;topic.prefix&gt;</em>,database=salesdb-streaming,table=inventory</code></pre>
+</div>
+</div>
+</div>
 </div>
 <div class="sect3">
 <h4 id="vitess-streaming-metrics"><a class="anchor" href="#vitess-streaming-metrics"></a>Streaming metrics</h4>
@@ -2285,7 +2615,7 @@ GEOMETRYCOLLECTION</code></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>The number of milliseconds between the last change event&#8217;s timestamp and the connector processing it.
-The values will incoporate any differences between the clocks on the machines where the database server and the connector are running.</p>
+The values will incorporate any differences between the clocks on the machines where the database server and the connector are running.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -2347,7 +2677,7 @@ The values will incoporate any differences between the clocks on the machines wh
 <p>The following configuration properties are <em>required</em> unless a default value is available.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 7. Required connector configuration properties</caption>
+<caption class="title">Table 9. Required connector configuration properties</caption>
 <colgroup>
 <col style="width: 30%;">
 <col style="width: 25%;">
@@ -2724,7 +3054,7 @@ If <code>table_a</code> has a an <code>id</code> column, and <code>regex_1</code
 </ul>
 </div>
 <div class="paragraph">
-<p>See <a href="../configuration/avro.html#avro-naming" class="page">Avro naming</a> for more details.</p>
+<p>See <a href="../configuration/avro.html#avro-naming" class="xref page">Avro naming</a> for more details.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -2747,6 +3077,31 @@ Set the property to one of the following values:</p>
 <dt class="hdlist1"><code>never</code></dt>
 <dd>
 <p>When the connector starts, it skips the snapshot process and immediately begins to stream change events for operations that the database records to the binary logs.</p>
+</dd>
+</dl>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="vitess-property-time-precision-mode"></a><a href="#vitess-property-time-precision-mode"><code>time.precision.mode</code></a></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>adaptive_time_microseconds</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>You can set the following options to determine how Debezium represents the precision of time, date, and timestamp values:<br></p>
+</div>
+<div class="paragraph">
+<p>+
+<code>adaptive_time_microseconds</code>::
+(Default) Captures date, datetime, and timestamp values exactly as they exist in the database.
+Values are represented with a precision in milliseconds, microseconds, or nanoseconds, depending on the database column type, with the exception of <code>TIME</code> type fields, which are always captured as microseconds.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>connect</code></dt>
+<dd>
+<p>Time and timestamp values are always represented in the default Kafka Connect formats for Time, Date, and Timestamp, which use millisecond precision regardless of the database columns' precision.</p>
 </dd>
 </dl>
 </div></div></td>
@@ -2778,7 +3133,7 @@ represents values as precise (Java&#8217;s 'BigDecimal') values. This is precise
 <p>The following <em>advanced</em> configuration properties have defaults that work in most situations and therefore rarely need to be specified in the connector&#8217;s configuration.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 8. Advanced connector configuration properties</caption>
+<caption class="title">Table 10. Advanced connector configuration properties</caption>
 <colgroup>
 <col style="width: 30%;">
 <col style="width: 28%;">
@@ -2800,7 +3155,7 @@ represents values as precise (Java&#8217;s 'BigDecimal') values. This is precise
 <p>No default</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Enumerates a comma-separated list of the symbolic names of the <a href="../development/converters.html#custom-converters" class="page">custom converter</a> instances that the connector can use.
+<p>Enumerates a comma-separated list of the symbolic names of the <a href="../development/converters.html#custom-converters" class="xref page">custom converter</a> instances that the connector can use.
 For example,<br></p>
 </div>
 <div class="paragraph">
@@ -2810,7 +3165,7 @@ For example,<br></p>
 <p>You must set the <code>converters</code> property to enable the connector to use a custom converter.</p>
 </div>
 <div class="paragraph">
-<p>For each converter that you configure for a connector, you must also add a <code>.type</code> property, which specifies the fully-qualifed name of the class that implements the converter interface.
+<p>For each converter that you configure for a connector, you must also add a <code>.type</code> property, which specifies the fully-qualified name of the class that implements the converter interface.
 The <code>.type</code> property uses the following format:<br></p>
 </div>
 <div class="paragraph">
@@ -2927,6 +3282,19 @@ By default, truncate operations are skipped (not emitted by this connector).</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Determines whether the connector generates events with transaction boundaries and enriches change event envelopes with transaction metadata. Specify <code>true</code> if you want the connector to do this. See <a href="#vitess-transaction-metadata">Transaction metadata</a> for details.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a id="vitess-property-transaction-metadata-factory"></a><a href="#vitess-property-transaction-metadata-factory"><code>transaction.metadata.factory</code></a></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>io.debezium.pipeline.txmetadata.DefaultTransactionMetadataFactory</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Determines the class that the connector uses to track transaction context and build the data structures and schemas to represent transactions.
+<code>io.debezium.connector.vitess.pipeline.txmetadata.VitessOrderedTransactionMetadataFactory</code> provides additional transaction metadata that can help consumers to interpret the correct order of two events, regardless of the order in which they are consumed.
+For more information, see <a href="#vitess-ordered-transaction-metadata">Ordered transaction metadata</a>.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -3080,7 +3448,26 @@ For example, if the topic prefix is <code>fulfillment</code>, the default topic 
 <p><code>-1</code></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>The maximum number of retries on retriable errors (e.g. connection errors) before failing (-1 = no limit, 0 = disabled, &gt; 0 = num of retries).</p>
+<p>Specifies how the connector responds after an operation that results in a retriable error, such as a connection error.<br>
+Set one of the following options:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>-1</code></dt>
+<dd>
+<p>No limit. The connector always restarts automatically, and retries the operation, regardless of the number of previous failures.</p>
+</dd>
+<dt class="hdlist1"><code>0</code></dt>
+<dd>
+<p>Disabled. The connector fails immediately, and never retries the operation.
+User intervention is required to restart the connector.</p>
+</dd>
+<dt class="hdlist1"><code>&gt; 0</code></dt>
+<dd>
+<p>The connector restarts automatically until it reaches the specified maximum number of retries.
+After the next failure, the connector stops, and user intervention is required to restart it.</p>
+</dd>
+</dl>
 </div></div></td>
 </tr>
 </tbody>
@@ -3214,7 +3601,7 @@ E.g. <code>"3"</code> will be emitted as the value instead of <code>"L"</code> i
 
 <div id="toc-rightbar"></div>    <footer class="footer">
         <div class="wrapper">
-            <div class="copyright">Copyright &copy; 2023 Debezium Community (Rev: <span class="truncated"><a href="https://github.com/debezium/debezium/commit/78c44c937c105375a5849e9d4e4b6d1848f48044">78c44c93</a></span>)
+            <div class="copyright">Copyright &copy; 2024 Debezium Community (Rev: <span class="truncated"><a href="https://github.com/debezium/debezium/commit/bfa664189cc3766838b1bf1874a0668d91a72a27">bfa66418</a></span>)
             
         </div>
     </footer>
